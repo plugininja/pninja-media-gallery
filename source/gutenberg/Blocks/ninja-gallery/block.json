@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "ninja-gallery/gallery",
+    "version": "1.0.0",
+    "title": "Ninja Gallery",
+    "category": "ninja-gallery",
+    "icon": "format-gallery",
+    "description": "Embed a Ninja Gallery into your content",
+    "keywords": ["gallery", "images", "photos", "ninja gallery"],
+    "textdomain": "ninja-gallery",
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"],
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "attributes": {
+        "id": {
+            "type": "number"
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css"
+}

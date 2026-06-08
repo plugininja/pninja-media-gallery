@@ -1,0 +1,63 @@
+@use "../utilities/variable" as *;
+
+.pnpnd-top-level-wrapper {
+    .pn-radio {
+        display: inline-flex;
+        align-items: center;
+
+        &__ring {
+            position: relative;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 1.5px solid $gray-500;
+            background: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        &__dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: $primary;
+            transform: scale(0);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        &__ring--active {
+            border: 1px solid $primary;
+
+            .pn-radio__dot {
+                transform: scale(1);
+            }
+        }
+
+        &__ring--loading {
+            .pn-radio__dot {
+                animation: pn-radio-loading 1s infinite ease-in-out;
+            }
+        }
+
+        &--disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    }
+}
+
+@keyframes pn-radio-loading {
+    0%,
+    100% {
+        transform: scale(0.4);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,7 @@
+// Ninja Gallery — Admin CSS
+// Component utility classes (pn-*, pnpnd-*, flex, grid, text-*, bg-*, etc.)
+// are loaded via common.scss imported in admin.js.
+// This file loads admin-specific structural and gallery styles only.
+
+@use './admin/main-layout';
+@use './admin/gallery-admin';

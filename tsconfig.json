@@ -1,0 +1,24 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"exclude": [ "node_modules", "assets", "vendor", "vendors" ],
+	"compilerOptions": {
+		"lib": [ "DOM", "DOM.Iterable", "ES2022" ],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"target": "ES6",
+		"typeRoots": [ "node_modules/@types", "source/types" ],
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"paths": {
+			"~/*": [ "./source/*" ]
+		}
+	}
+}

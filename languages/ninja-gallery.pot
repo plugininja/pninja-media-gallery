@@ -1,0 +1,779 @@
+# Copyright (C) 2026 Plugininja
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Ninja Gallery 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ninja-gallery\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-06T10:24:58+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ninja-gallery\n"
+
+#. Plugin Name of the plugin
+#: ninja-gallery.php
+#: includes/admin/class-admin.php:34
+#: includes/admin/class-admin.php:35
+#: includes/gutenberg/class-blocks.php:60
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Ninja Gallery"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ninja-gallery.php
+msgid "https://plugininja.com/ninja-gallery"
+msgstr ""
+
+#. Description of the plugin
+#: ninja-gallery.php
+msgid "Beautiful responsive galleries with Grid, Masonry, Lightbox & Album support."
+msgstr ""
+
+#. Author of the plugin
+#: ninja-gallery.php
+msgid "Plugininja"
+msgstr ""
+
+#. Author URI of the plugin
+#: ninja-gallery.php
+msgid "https://plugininja.com"
+msgstr ""
+
+#: includes/admin/class-admin.php:45
+#: includes/admin/class-admin.php:46
+msgid "All Galleries"
+msgstr ""
+
+#: includes/admin/class-admin.php:54
+msgid "Add New Gallery"
+msgstr ""
+
+#: includes/admin/class-admin.php:55
+msgid "Add New"
+msgstr ""
+
+#: includes/admin/class-admin.php:63
+#: includes/admin/class-admin.php:64
+#: assets/js/admin.js:1
+msgid "Settings"
+msgstr ""
+
+#: includes/api/class-base-controller.php:76
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/api/class-gallery-controller.php:119
+#: includes/api/class-gallery-controller.php:158
+#: includes/api/class-gallery-controller.php:185
+msgid "Gallery not found."
+msgstr ""
+
+#: includes/api/class-image-controller.php:99
+msgid "Image source is required."
+msgstr ""
+
+#: includes/api/class-image-controller.php:128
+#: includes/api/class-image-controller.php:148
+msgid "Image not found."
+msgstr ""
+
+#: includes/api/class-image-controller.php:164
+msgid "Invalid order data."
+msgstr ""
+
+#: includes/api/class-settings-controller.php:53
+msgid "Invalid settings data."
+msgstr ""
+
+#: includes/class-plugin.php:99
+msgid "Please provide a gallery ID."
+msgstr ""
+
+#. translators: %s: table name
+#: models/class-base-model.php:60
+#, php-format
+msgid "Failed to insert into %s."
+msgstr ""
+
+#. translators: %s: table name
+#: models/class-base-model.php:74
+#, php-format
+msgid "Insert into %s succeeded but returned no ID. The table schema may be incorrect — please deactivate and reactivate the plugin."
+msgstr ""
+
+#: models/class-base-model.php:100
+msgid "Database update failed."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "button-icon"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Galleries"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "New Gallery"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Loading"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "icon"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Type..."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Grid"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Masonry"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Justified"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Album"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Published"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Draft"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Gallery actions"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Edit"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Copied!"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Copy Shortcode"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Duplicate"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Delete this gallery? This cannot be undone."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Delete"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "images"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Click to copy shortcode"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Manage all your image galleries — everything's free, always."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Search galleries…"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "All Status"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "All Layouts"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Loading…"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "No galleries yet"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "No galleries match your filters"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Create your first gallery to get started."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Try adjusting your search or filters."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Documentation"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Content"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Layout"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Style"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Lightbox"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Advanced"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Equal-size tiles"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Pinterest-style"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Full-width rows"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Featured + grid"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Select Images"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Add to Gallery"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Remove image"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Adding…"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Add Images"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "No images yet. Click \"Add Images\" to get started."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "No images yet. Click \"Add Images\" to pick from your media library."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Untitled Gallery"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Failed to save gallery. Please try again."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Failed to update gallery. Please try again."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Edit Gallery"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Save Draft"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Publish"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Dismiss error"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Gallery title…"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Live Preview"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Add images to see a live preview"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Layout Type"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Columns"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Gap"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Border Radius"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Shadow"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "None"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Small"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Medium"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Large"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Hover Effect"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Zoom"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Fade"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Slide"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Overlay Style"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Dark"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Dark Gradient"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Light"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Enable Lightbox"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Click images to open fullscreen"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Transition"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Show Captions"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Display image captions in lightbox"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Navigation Controls"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Prev/next arrows and keyboard nav"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Lazy Loading"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Load images as they scroll into view"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Image Quality"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Low"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "High Quality"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Original"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Tablet Columns"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Mobile Columns"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Custom CSS Class"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Added to the gallery wrapper element"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Configure global defaults for all galleries."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Settings saved"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Saving…"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Save Settings"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "General"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Default values applied when creating a new gallery."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Default Layout"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Layout type pre-selected for new galleries"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Grid — equal-size tiles"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Masonry — Pinterest style"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Justified — full-width rows"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Album — featured + grid"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Default Image Size"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "WordPress image size served to the browser"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Medium — up to 600 px"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Large — up to 1024 px"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Full — original size"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Lazy Load Images by Default"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Defer off-screen images — improves initial page load"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Enable Lightbox by Default"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Open images fullscreen when clicked"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Performance"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Control server-side and browser optimisations."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Thumbnail Generation"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Auto-create resized thumbnails via WordPress image sizes"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Enable Caching"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Cache rendered gallery HTML for faster repeat loads"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Accessibility"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Make galleries usable for everyone."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Keyboard Navigation"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Arrow keys move focus between gallery items"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Focus Indicators"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Visible focus rings for keyboard-only users"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Reduced Motion"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Honour the OS prefers-reduced-motion setting"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Data & Tools"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Export, import, or reset your plugin configuration."
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Export Settings"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Download your current settings as a JSON file"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Export"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Import Settings"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Restore settings from a previously exported JSON file"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Import"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Reset to Defaults"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "All settings will be restored to their factory values"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Reset all settings to defaults?"
+msgstr ""
+
+#: assets/js/admin.js:1
+msgid "Reset"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Select a gallery…"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Gallery ID:"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Shortcode:"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Select a gallery to embed it in your content."
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/index.js:1
+msgid "Gallery Settings"
+msgstr ""
+
+#: assets/js/frontend.js:1
+msgid "Image lightbox"
+msgstr ""
+
+#: assets/js/frontend.js:1
+msgid "Close lightbox"
+msgstr ""
+
+#: assets/js/frontend.js:1
+msgid "Previous image"
+msgstr ""
+
+#: assets/js/frontend.js:1
+msgid "Next image"
+msgstr ""
+
+#: assets/js/frontend.js:1
+#, js-format
+msgid "Go to image %d"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Tooltip"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Coming Soon"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Most Used Feature"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "New Feature"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Beta Feature"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Search..."
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Loading..."
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "No results found"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Clear all"
+msgstr ""
+
+#: assets/js/shared.js:1
+msgid "Select..."
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block title"
+msgid "Ninja Gallery"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block description"
+msgid "Embed a Ninja Gallery into your content"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block keyword"
+msgid "gallery"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block keyword"
+msgid "images"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block keyword"
+msgid "photos"
+msgstr ""
+
+#: assets/js/blocks/ninja-gallery/block.json
+#: source/gutenberg/Blocks/ninja-gallery/block.json
+msgctxt "block keyword"
+msgid "ninja gallery"
+msgstr ""

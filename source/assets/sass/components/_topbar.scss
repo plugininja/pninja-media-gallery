@@ -1,0 +1,15 @@
+@use "../utilities/variable" as *;
+
+.pnpnd-top-level-wrapper {
+    .pn-topbar {
+        position: sticky;
+        top: 0;
+        background-color: $white;
+        width: 100%;
+        box-sizing: border-box;
+
+        &--border {
+            border-bottom: 1px solid $primary-light;
+        }
+    }
+}
