@@ -2,7 +2,7 @@
 Contributors:      plugininja, abdullaharham
 Tags:              gallery, photo gallery, responsive gallery, masonry, lightbox
 Requires at least: 6.2
-Tested up to:      6.7
+Tested up to:      7.0
 Requires PHP:      7.4
 Stable tag:        1.0.0
 License:           GPL-2.0-or-later
@@ -57,6 +57,11 @@ Create a gallery in **Ninja Gallery → Add New**, note the gallery ID, then add
 
 Yes. On the gallery edit screen, click **Add Images** to open the standard
 WordPress Media Library uploader.
+
+== Contribute ==
+
+Ninja Gallery is an open-source project. You can view the full unminified source and contribute on GitHub:
+https://github.com/plugininja/ninja-gallery
 
 == Screenshots ==
 
