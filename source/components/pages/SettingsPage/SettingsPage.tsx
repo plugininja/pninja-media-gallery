@@ -105,7 +105,7 @@ const SettingsPage = () => {
 		const url    = URL.createObjectURL( blob );
 		const a      = document.createElement( 'a' );
 		a.href     = url;
-		a.download = 'ninja-gallery-settings.json';
+		a.download = 'pninja-media-gallery-settings.json';
 		document.body.appendChild( a );
 		a.click();
 		a.remove();
@@ -130,10 +130,10 @@ const SettingsPage = () => {
 			<InlineStack align="between" blockAlign="center" wrap={ true } gap={ 12 }>
 				<BlockStack gap={ 4 }>
 					<Text as="h1" size="xl" weight="semibold">
-						{ __( 'Settings', 'ninja-gallery' ) }
+						{ __( 'Settings', 'pninja-media-gallery' ) }
 					</Text>
 					<Text size="sm" color="gray-500">
-						{ __( 'Configure global defaults for all galleries.', 'ninja-gallery' ) }
+						{ __( 'Configure global defaults for all galleries.', 'pninja-media-gallery' ) }
 					</Text>
 				</BlockStack>
 
@@ -142,7 +142,7 @@ const SettingsPage = () => {
 						<InlineStack gap={ 6 } blockAlign="center">
 							<Icon name="check_circle" color="success" fontSize="sm" />
 							<Text size="sm" color="success" weight="medium">
-								{ __( 'Settings saved', 'ninja-gallery' ) }
+								{ __( 'Settings saved', 'pninja-media-gallery' ) }
 							</Text>
 						</InlineStack>
 					) }
@@ -153,7 +153,7 @@ const SettingsPage = () => {
 						loading={ isLoading }
 						onClick={ handleSave }
 					>
-						{ isLoading ? __( 'Saving…', 'ninja-gallery' ) : __( 'Save Settings', 'ninja-gallery' ) }
+						{ isLoading ? __( 'Saving…', 'pninja-media-gallery' ) : __( 'Save Settings', 'pninja-media-gallery' ) }
 					</Button>
 				</InlineStack>
 			</InlineStack>
@@ -163,45 +163,45 @@ const SettingsPage = () => {
 
 				{ /* General defaults */ }
 				<SettingsField
-					title={ __( 'General', 'ninja-gallery' ) }
-					description={ __( 'Default values applied when creating a new gallery.', 'ninja-gallery' ) }
+					title={ __( 'General', 'pninja-media-gallery' ) }
+					description={ __( 'Default values applied when creating a new gallery.', 'pninja-media-gallery' ) }
 					compact
 				>
 					<SelectRow
-						label={ __( 'Default Layout', 'ninja-gallery' ) }
-						description={ __( 'Layout type pre-selected for new galleries', 'ninja-gallery' ) }
+						label={ __( 'Default Layout', 'pninja-media-gallery' ) }
+						description={ __( 'Layout type pre-selected for new galleries', 'pninja-media-gallery' ) }
 						value={ settings.default_layout }
 						options={ [
-							{ value: 'grid',      label: __( 'Grid — equal-size tiles', 'ninja-gallery' ) },
-							{ value: 'masonry',   label: __( 'Masonry — Pinterest style', 'ninja-gallery' ) },
-							{ value: 'justified', label: __( 'Justified — full-width rows', 'ninja-gallery' ) },
-							{ value: 'album',     label: __( 'Album — featured + grid', 'ninja-gallery' ) },
+							{ value: 'grid',      label: __( 'Grid — equal-size tiles', 'pninja-media-gallery' ) },
+							{ value: 'masonry',   label: __( 'Masonry — Pinterest style', 'pninja-media-gallery' ) },
+							{ value: 'justified', label: __( 'Justified — full-width rows', 'pninja-media-gallery' ) },
+							{ value: 'album',     label: __( 'Album — featured + grid', 'pninja-media-gallery' ) },
 						] }
 						onChange={ ( v ) => update( 'default_layout', v as SettingsFormState[ 'default_layout' ] ) }
 					/>
 					<Divider color="gray-100" />
 					<SelectRow
-						label={ __( 'Default Image Size', 'ninja-gallery' ) }
-						description={ __( 'WordPress image size served to the browser', 'ninja-gallery' ) }
+						label={ __( 'Default Image Size', 'pninja-media-gallery' ) }
+						description={ __( 'WordPress image size served to the browser', 'pninja-media-gallery' ) }
 						value={ settings.image_size }
 						options={ [
-							{ value: 'medium',    label: __( 'Medium — up to 600 px', 'ninja-gallery' ) },
-							{ value: 'large',     label: __( 'Large — up to 1024 px',  'ninja-gallery' ) },
-							{ value: 'full',      label: __( 'Full — original size',   'ninja-gallery' ) },
+							{ value: 'medium',    label: __( 'Medium — up to 600 px', 'pninja-media-gallery' ) },
+							{ value: 'large',     label: __( 'Large — up to 1024 px',  'pninja-media-gallery' ) },
+							{ value: 'full',      label: __( 'Full — original size',   'pninja-media-gallery' ) },
 						] }
 						onChange={ ( v ) => update( 'image_size', v ) }
 					/>
 					<Divider color="gray-100" />
 					<SwitchRow
-						label={ __( 'Lazy Load Images by Default', 'ninja-gallery' ) }
-						description={ __( 'Defer off-screen images — improves initial page load', 'ninja-gallery' ) }
+						label={ __( 'Lazy Load Images by Default', 'pninja-media-gallery' ) }
+						description={ __( 'Defer off-screen images — improves initial page load', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.lazy_load_default ) }
 						onChange={ ( v ) => update( 'lazy_load_default', v ) }
 					/>
 					<Divider color="gray-100" />
 					<SwitchRow
-						label={ __( 'Enable Lightbox by Default', 'ninja-gallery' ) }
-						description={ __( 'Open images fullscreen when clicked', 'ninja-gallery' ) }
+						label={ __( 'Enable Lightbox by Default', 'pninja-media-gallery' ) }
+						description={ __( 'Open images fullscreen when clicked', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.lightbox_enabled ) }
 						onChange={ ( v ) => update( 'lightbox_enabled', v ) }
 					/>
@@ -209,20 +209,20 @@ const SettingsPage = () => {
 
 				{ /* Performance */ }
 				<SettingsField
-					title={ __( 'Performance', 'ninja-gallery' ) }
-					description={ __( 'Control server-side and browser optimisations.', 'ninja-gallery' ) }
+					title={ __( 'Performance', 'pninja-media-gallery' ) }
+					description={ __( 'Control server-side and browser optimisations.', 'pninja-media-gallery' ) }
 					compact
 				>
 					<SwitchRow
-						label={ __( 'Thumbnail Generation', 'ninja-gallery' ) }
-						description={ __( 'Auto-create resized thumbnails via WordPress image sizes', 'ninja-gallery' ) }
+						label={ __( 'Thumbnail Generation', 'pninja-media-gallery' ) }
+						description={ __( 'Auto-create resized thumbnails via WordPress image sizes', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.thumbnail_generation ) }
 						onChange={ ( v ) => update( 'thumbnail_generation', v ) }
 					/>
 					<Divider color="gray-100" />
 					<SwitchRow
-						label={ __( 'Enable Caching', 'ninja-gallery' ) }
-						description={ __( 'Cache rendered gallery HTML for faster repeat loads', 'ninja-gallery' ) }
+						label={ __( 'Enable Caching', 'pninja-media-gallery' ) }
+						description={ __( 'Cache rendered gallery HTML for faster repeat loads', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.enable_caching ) }
 						onChange={ ( v ) => update( 'enable_caching', v ) }
 					/>
@@ -230,27 +230,27 @@ const SettingsPage = () => {
 
 				{ /* Accessibility */ }
 				<SettingsField
-					title={ __( 'Accessibility', 'ninja-gallery' ) }
-					description={ __( 'Make galleries usable for everyone.', 'ninja-gallery' ) }
+					title={ __( 'Accessibility', 'pninja-media-gallery' ) }
+					description={ __( 'Make galleries usable for everyone.', 'pninja-media-gallery' ) }
 					compact
 				>
 					<SwitchRow
-						label={ __( 'Keyboard Navigation', 'ninja-gallery' ) }
-						description={ __( 'Arrow keys move focus between gallery items', 'ninja-gallery' ) }
+						label={ __( 'Keyboard Navigation', 'pninja-media-gallery' ) }
+						description={ __( 'Arrow keys move focus between gallery items', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.keyboard_navigation ) }
 						onChange={ ( v ) => update( 'keyboard_navigation', v ) }
 					/>
 					<Divider color="gray-100" />
 					<SwitchRow
-						label={ __( 'Focus Indicators', 'ninja-gallery' ) }
-						description={ __( 'Visible focus rings for keyboard-only users', 'ninja-gallery' ) }
+						label={ __( 'Focus Indicators', 'pninja-media-gallery' ) }
+						description={ __( 'Visible focus rings for keyboard-only users', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.focus_indicators ) }
 						onChange={ ( v ) => update( 'focus_indicators', v ) }
 					/>
 					<Divider color="gray-100" />
 					<SwitchRow
-						label={ __( 'Reduced Motion', 'ninja-gallery' ) }
-						description={ __( 'Honour the OS prefers-reduced-motion setting', 'ninja-gallery' ) }
+						label={ __( 'Reduced Motion', 'pninja-media-gallery' ) }
+						description={ __( 'Honour the OS prefers-reduced-motion setting', 'pninja-media-gallery' ) }
 						checked={ Boolean( settings.reduced_motion ) }
 						onChange={ ( v ) => update( 'reduced_motion', v ) }
 					/>
@@ -258,8 +258,8 @@ const SettingsPage = () => {
 
 				{ /* Data / Tools */ }
 				<SettingsField
-					title={ __( 'Data & Tools', 'ninja-gallery' ) }
-					description={ __( 'Export, import, or reset your plugin configuration.', 'ninja-gallery' ) }
+					title={ __( 'Data & Tools', 'pninja-media-gallery' ) }
+					description={ __( 'Export, import, or reset your plugin configuration.', 'pninja-media-gallery' ) }
 					compact
 				>
 					{ /* Hidden file input for import */ }
@@ -274,14 +274,14 @@ const SettingsPage = () => {
 					<InlineStack align="between" blockAlign="center" gap={ 20 } wrap={ false } style={ { padding: '14px 0' } }>
 						<BlockStack gap={ 2 }>
 							<Text size="sm" weight="medium" color="gray-800">
-								{ __( 'Export Settings', 'ninja-gallery' ) }
+								{ __( 'Export Settings', 'pninja-media-gallery' ) }
 							</Text>
 							<Text size="xs" color="gray-400">
-								{ __( 'Download your current settings as a JSON file', 'ninja-gallery' ) }
+								{ __( 'Download your current settings as a JSON file', 'pninja-media-gallery' ) }
 							</Text>
 						</BlockStack>
 						<Button variant="outlined" size="small" startIcon="upload" onClick={ handleExport }>
-							{ __( 'Export', 'ninja-gallery' ) }
+							{ __( 'Export', 'pninja-media-gallery' ) }
 						</Button>
 					</InlineStack>
 
@@ -290,14 +290,14 @@ const SettingsPage = () => {
 					<InlineStack align="between" blockAlign="center" gap={ 20 } wrap={ false } style={ { padding: '14px 0' } }>
 						<BlockStack gap={ 2 }>
 							<Text size="sm" weight="medium" color="gray-800">
-								{ __( 'Import Settings', 'ninja-gallery' ) }
+								{ __( 'Import Settings', 'pninja-media-gallery' ) }
 							</Text>
 							<Text size="xs" color="gray-400">
-								{ __( 'Restore settings from a previously exported JSON file', 'ninja-gallery' ) }
+								{ __( 'Restore settings from a previously exported JSON file', 'pninja-media-gallery' ) }
 							</Text>
 						</BlockStack>
 						<Button variant="outlined" size="small" startIcon="download" onClick={ () => importRef.current?.click() }>
-							{ __( 'Import', 'ninja-gallery' ) }
+							{ __( 'Import', 'pninja-media-gallery' ) }
 						</Button>
 					</InlineStack>
 
@@ -306,10 +306,10 @@ const SettingsPage = () => {
 					<InlineStack align="between" blockAlign="center" gap={ 20 } wrap={ false } style={ { padding: '14px 0' } }>
 						<BlockStack gap={ 2 }>
 							<Text size="sm" weight="medium" color="gray-800">
-								{ __( 'Reset to Defaults', 'ninja-gallery' ) }
+								{ __( 'Reset to Defaults', 'pninja-media-gallery' ) }
 							</Text>
 							<Text size="xs" color="gray-400">
-								{ __( 'All settings will be restored to their factory values', 'ninja-gallery' ) }
+								{ __( 'All settings will be restored to their factory values', 'pninja-media-gallery' ) }
 							</Text>
 						</BlockStack>
 						<Button
@@ -317,14 +317,14 @@ const SettingsPage = () => {
 							size="small"
 							startIcon="restart_alt"
 							onClick={ async () => {
-								if ( window.confirm( __( 'Reset all settings to defaults?', 'ninja-gallery' ) ) ) {
+								if ( window.confirm( __( 'Reset all settings to defaults?', 'pninja-media-gallery' ) ) ) {
 									setSettings( { ...DEFAULT_SETTINGS } );
 									await saveSettings( { ...DEFAULT_SETTINGS } );
 									setSaved( true );
 								}
 							} }
 						>
-							{ __( 'Reset', 'ninja-gallery' ) }
+							{ __( 'Reset', 'pninja-media-gallery' ) }
 						</Button>
 					</InlineStack>
 				</SettingsField>

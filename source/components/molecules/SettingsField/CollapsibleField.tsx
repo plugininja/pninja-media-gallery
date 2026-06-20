@@ -118,7 +118,7 @@ const CollapsibleField: SettingsFieldProps = ({
                         href={docLink}
                         target="_blank"
                     >
-                        {__("Documentation", "ninja-gallery")}
+                        {__("Documentation", "pninja-media-gallery")}
                     </Button>
                 )}
 

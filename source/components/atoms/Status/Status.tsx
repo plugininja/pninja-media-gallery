@@ -7,7 +7,7 @@ import Icon from "~/components/atoms/Icon";
 import { __ } from "@wordpress/i18n";
 import clsx from "clsx";
 
-// Ninja Gallery is a free plugin — no pro-gating.
+// Pninja Media Gallery is a free plugin — no pro-gating.
 // Status renders children transparently unless an info badge flag is set.
 
 const Status = ({
@@ -37,10 +37,10 @@ const Status = ({
     type StatusConfig = { key: string; variant: string; title: string; icon: string; iconColor: TextColor; condition: boolean };
 
     const statusConfig: StatusConfig[] = [
-        { key: "comingsoon", variant: "warning",    title: __( "Coming Soon",        "ninja-gallery" ), icon: "upcoming",              iconColor: "white",   condition: isComingSoon },
-        { key: "hot",        variant: "error",      title: __( "Most Used Feature",  "ninja-gallery" ), icon: "local_fire_department", iconColor: "white",   condition: isHot },
-        { key: "badge-new",  variant: "badge-new",  title: __( "New Feature",        "ninja-gallery" ), icon: "campaign",              iconColor: "primary", condition: isNew },
-        { key: "beta",       variant: "secondary",  title: __( "Beta Feature",       "ninja-gallery" ), icon: "running_with_errors",   iconColor: "primary", condition: isBeta },
+        { key: "comingsoon", variant: "warning",    title: __( "Coming Soon",        "pninja-media-gallery" ), icon: "upcoming",              iconColor: "white",   condition: isComingSoon },
+        { key: "hot",        variant: "error",      title: __( "Most Used Feature",  "pninja-media-gallery" ), icon: "local_fire_department", iconColor: "white",   condition: isHot },
+        { key: "badge-new",  variant: "badge-new",  title: __( "New Feature",        "pninja-media-gallery" ), icon: "campaign",              iconColor: "primary", condition: isNew },
+        { key: "beta",       variant: "secondary",  title: __( "Beta Feature",       "pninja-media-gallery" ), icon: "running_with_errors",   iconColor: "primary", condition: isBeta },
     ];
 
     const statusList = statusConfig.filter( ( s ) => s.condition );
@@ -85,7 +85,7 @@ const Status = ({
     );
 };
 
-// No premium tier in Ninja Gallery — always returns null.
+// No premium tier in Pninja Media Gallery — always returns null.
 Status.Pro = ( { title: _t, color: _c }: { title?: string; color?: TextColor } ) => null;
 
 export default Status;

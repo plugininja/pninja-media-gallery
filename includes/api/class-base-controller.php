@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
  */
 abstract class BaseController {
 
-	/** @var string REST namespace, e.g. ninja-gallery/v1 */
+	/** @var string REST namespace, e.g. pninja-media-gallery/v1 */
 	protected $namespace = PNPNG_REST_NS;
 
 	/** @var string Route base, e.g. galleries */
@@ -74,7 +74,25 @@ abstract class BaseController {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
 				'pnpng_rest_forbidden',
-				__( 'You do not have permission to perform this action.', 'ninja-gallery' ),
+				__( 'You do not have permission to perform this action.', 'pninja-media-gallery' ),
+				array( 'status' => rest_authorization_required_code() )
+			);
+		}
+		return true;
+	}
+
+	/**
+	 * Admin-only permission callback — requires manage_options.
+	 * Use for plugin-wide settings that should be restricted to site administrators.
+	 *
+	 * @param  WP_REST_Request $request
+	 * @return bool|WP_Error
+	 */
+	public function admin_permissions_check( WP_REST_Request $request ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return new WP_Error(
+				'pnpng_rest_forbidden',
+				__( 'You do not have permission to perform this action.', 'pninja-media-gallery' ),
 				array( 'status' => rest_authorization_required_code() )
 			);
 		}

@@ -1,4 +1,4 @@
-=== Ninja Gallery ===
+=== Pninja Media Gallery ===
 Contributors:      plugininja, abdullaharham
 Tags:              gallery, photo gallery, responsive gallery, masonry, lightbox
 Requires at least: 6.2
@@ -12,7 +12,7 @@ Beautiful, responsive WordPress galleries with Grid, Masonry, Lightbox & Album s
 
 == Description ==
 
-**Ninja Gallery** gives you total control over your image galleries. Create stunning responsive
+**Pninja Media Gallery** gives you total control over your image galleries. Create stunning responsive
 galleries in seconds and embed them anywhere with a simple shortcode.
 
 = Key Features =
@@ -22,14 +22,14 @@ galleries in seconds and embed them anywhere with a simple shortcode.
 * **Lightbox** — click any image to view it full-screen with keyboard navigation
 * **Albums / Gallery Groups** — organise images into named galleries
 * **React SPA Admin** — fast, modern admin UI with instant feedback
-* **REST API** — full CRUD API at `ninja-gallery/v1` for headless use
+* **REST API** — full CRUD API at `pninja-media-gallery/v1` for headless use
 * **Developer-friendly** — action/filter hooks throughout, PSR-4 autoloading, RTK Query
 
 = Shortcode =
 
 ```
-[ninja_gallery id="1"]
-[ninja_gallery id="1" layout="masonry" columns="4" lightbox="true"]
+[pninja_media_gallery id="1"]
+[pninja_media_gallery id="1" layout="masonry" columns="4" lightbox="true"]
 ```
 
 = Shortcode Parameters =
@@ -41,27 +41,22 @@ galleries in seconds and embed them anywhere with a simple shortcode.
 
 == Installation ==
 
-1. Upload the `ninja-gallery` folder to `/wp-content/plugins/`.
+1. Upload the `pninja-media-gallery` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Ninja Gallery → Add New** to create your first gallery.
+3. Go to **Pninja Media Gallery → Add New** to create your first gallery.
 4. Copy the shortcode shown in the gallery editor and paste it into any post or page.
 
 == Frequently Asked Questions ==
 
 = How do I embed a gallery in a post? =
 
-Create a gallery in **Ninja Gallery → Add New**, note the gallery ID, then add
-`[ninja_gallery id="YOUR_ID"]` to any post, page, or widget.
+Create a gallery in **Pninja Media Gallery → Add New**, note the gallery ID, then add
+`[pninja_media_gallery id="YOUR_ID"]` to any post, page, or widget.
 
 = Can I use the Media Library to add images? =
 
 Yes. On the gallery edit screen, click **Add Images** to open the standard
 WordPress Media Library uploader.
-
-== Contribute ==
-
-Ninja Gallery is an open-source project. You can view the full unminified source and contribute on GitHub:
-https://github.com/plugininja/ninja-gallery
 
 == Screenshots ==
 

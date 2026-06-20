@@ -24,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         inputClassName = "",
         type = "text",
         title,
-        placeholder = __("Type...", "ninja-gallery"),
+        placeholder = __("Type...", "pninja-media-gallery"),
         value: controlledValue = "",
         visible = true,
         disabled = false,

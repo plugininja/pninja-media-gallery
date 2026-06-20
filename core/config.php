@@ -7,7 +7,7 @@ define( 'PNPNG_DIR',          plugin_dir_path( dirname( __FILE__ ) ) );
 define( 'PNPNG_URL',          plugin_dir_url( dirname( __FILE__ ) ) );
 define( 'PNPNG_ASSETS_URL',   PNPNG_URL . 'assets/js/' );
 define( 'PNPNG_CSS_URL',      PNPNG_URL . 'assets/js/' ); // CSS is emitted into assets/js/ by webpack.
-define( 'PNPNG_BASENAME',     plugin_basename( dirname( __DIR__ ) . '/ninja-gallery.php' ) );
-define( 'PNPNG_REST_NS',      'ninja-gallery/v1' );
+define( 'PNPNG_BASENAME',     plugin_basename( dirname( __DIR__ ) . '/pninja-media-gallery.php' ) );
+define( 'PNPNG_REST_NS',      'pninja-media-gallery/v1' );
 define( 'PNPNG_MIN_WP',       '6.2' );
 define( 'PNPNG_MIN_PHP',      '7.4' );

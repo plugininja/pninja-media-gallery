@@ -22,7 +22,7 @@ const BlockContainer = ( { attributes, setAttributes }: BlockContainerProps ) =>
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ __( 'Gallery Settings', 'ninja-gallery' ) }
+					title={ __( 'Gallery Settings', 'pninja-media-gallery' ) }
 					initialOpen={ true }
 				>
 					<PanelRow>

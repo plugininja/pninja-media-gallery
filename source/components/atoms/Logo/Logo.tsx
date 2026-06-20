@@ -1,7 +1,7 @@
 import { CSS_VAR } from "~/types/tokens";
 
 /**
- * Ninja Gallery — topbar logo.
+ * Pninja Media Gallery — topbar logo.
  * Shows an icon + wordmark at a size that fits comfortably in the header.
  */
 const Logo = () => (
@@ -46,7 +46,7 @@ const Logo = () => (
                 color:      `var(${ CSS_VAR.BLACK })`,
                 letterSpacing: '-0.02em',
             } }>
-                Ninja Gallery
+                Pninja Media Gallery
             </span>
             <span style={ {
                 fontSize:  10,
@@ -54,7 +54,7 @@ const Logo = () => (
                 color:      `var(${ CSS_VAR.GRAY_400 })`,
                 letterSpacing: '0.02em',
             } }>
-                By Plugininja
+                By Pninja
             </span>
         </span>
     </div>

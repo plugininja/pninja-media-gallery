@@ -57,7 +57,7 @@ abstract class BaseModel {
 				'pnpng_db_insert_error',
 				$this->db->last_error ?: sprintf(
 					/* translators: %s: table name */
-					__( 'Failed to insert into %s.', 'ninja-gallery' ),
+					__( 'Failed to insert into %s.', 'pninja-media-gallery' ),
 					esc_html( $this->table() )
 				)
 			);
@@ -71,7 +71,7 @@ abstract class BaseModel {
 				'pnpng_db_no_id',
 				sprintf(
 					/* translators: %s: table name */
-					__( 'Insert into %s succeeded but returned no ID. The table schema may be incorrect — please deactivate and reactivate the plugin.', 'ninja-gallery' ),
+					__( 'Insert into %s succeeded but returned no ID. The table schema may be incorrect — please deactivate and reactivate the plugin.', 'pninja-media-gallery' ),
 					esc_html( $this->table() )
 				)
 			);
@@ -97,7 +97,7 @@ abstract class BaseModel {
 		if ( false === $result ) {
 			return new WP_Error(
 				'pnpng_db_update_error',
-				$this->db->last_error ?: __( 'Database update failed.', 'ninja-gallery' )
+				$this->db->last_error ?: __( 'Database update failed.', 'pninja-media-gallery' )
 			);
 		}
 

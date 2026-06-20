@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
- * Global helper functions for Ninja Gallery.
+ * Global helper functions for Pninja Media Gallery.
  * All functions are prefixed pnpng_.
  */
 

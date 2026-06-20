@@ -4,16 +4,17 @@ namespace Pnpnd\NG\API;
 
 use WP_REST_Request;
 use Pnpnd\NG\Models\ImageModel;
+use Pnpnd\NG\Models\GalleryModel;
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
  * REST controller for /galleries/{gallery_id}/images endpoints.
  *
- * GET    /ninja-gallery/v1/galleries/{gallery_id}/images
- * POST   /ninja-gallery/v1/galleries/{gallery_id}/images
- * PUT    /ninja-gallery/v1/galleries/{gallery_id}/images/{id}
- * DELETE /ninja-gallery/v1/galleries/{gallery_id}/images/{id}
- * POST   /ninja-gallery/v1/galleries/{gallery_id}/images/reorder
+ * GET    /pninja-media-gallery/v1/galleries/{gallery_id}/images
+ * POST   /pninja-media-gallery/v1/galleries/{gallery_id}/images
+ * PUT    /pninja-media-gallery/v1/galleries/{gallery_id}/images/{id}
+ * DELETE /pninja-media-gallery/v1/galleries/{gallery_id}/images/{id}
+ * POST   /pninja-media-gallery/v1/galleries/{gallery_id}/images/reorder
  */
 class ImageController extends BaseController {
 
@@ -72,11 +73,22 @@ class ImageController extends BaseController {
 
 	/**
 	 * GET images for a gallery.
+	 *
+	 * Unauthenticated callers may only retrieve images from published galleries.
 	 */
 	public function get_items( WP_REST_Request $request ) {
 		$gallery_id = absint( $request->get_param( 'gallery_id' ) );
-		$model      = new ImageModel();
-		$images     = $model->get_by_gallery( $gallery_id );
+
+		// Prevent public access to images belonging to non-published galleries.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			$gallery = ( new GalleryModel() )->find( $gallery_id );
+			if ( ! $gallery || 'publish' !== $gallery->status ) {
+				return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+			}
+		}
+
+		$model  = new ImageModel();
+		$images = $model->get_by_gallery( $gallery_id );
 
 		return $this->successResponse( $images );
 	}
@@ -96,7 +108,7 @@ class ImageController extends BaseController {
 		}
 
 		if ( ! $src ) {
-			return $this->errorResponse( 'pnpng_invalid_image', __( 'Image source is required.', 'ninja-gallery' ) );
+			return $this->errorResponse( 'pnpng_invalid_image', __( 'Image source is required.', 'pninja-media-gallery' ) );
 		}
 
 		$model = new ImageModel();
@@ -121,11 +133,18 @@ class ImageController extends BaseController {
 	 * PUT — update image meta.
 	 */
 	public function update_item( WP_REST_Request $request ) {
-		$id    = absint( $request->get_param( 'id' ) );
-		$model = new ImageModel();
+		$id         = absint( $request->get_param( 'id' ) );
+		$gallery_id = absint( $request->get_param( 'gallery_id' ) );
+		$model      = new ImageModel();
+		$image      = $model->find( $id );
 
-		if ( ! $model->find( $id ) ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'ninja-gallery' ), 404 );
+		if ( ! $image ) {
+			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+		}
+
+		// Prevent cross-gallery manipulation: image must belong to the gallery in the URL.
+		if ( (int) $image->gallery_id !== $gallery_id ) {
+			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->update( $id, array(
@@ -141,11 +160,18 @@ class ImageController extends BaseController {
 	 * DELETE — remove image from gallery.
 	 */
 	public function delete_item( WP_REST_Request $request ) {
-		$id    = absint( $request->get_param( 'id' ) );
-		$model = new ImageModel();
+		$id         = absint( $request->get_param( 'id' ) );
+		$gallery_id = absint( $request->get_param( 'gallery_id' ) );
+		$model      = new ImageModel();
+		$image      = $model->find( $id );
 
-		if ( ! $model->find( $id ) ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'ninja-gallery' ), 404 );
+		if ( ! $image ) {
+			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+		}
+
+		// Prevent cross-gallery manipulation: image must belong to the gallery in the URL.
+		if ( (int) $image->gallery_id !== $gallery_id ) {
+			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->delete( $id );
@@ -156,19 +182,46 @@ class ImageController extends BaseController {
 
 	/**
 	 * POST /reorder — update sort_order for a batch of image IDs.
+	 *
+	 * Every image ID in the batch must belong to the gallery in the URL.
+	 * A single foreign ID aborts the entire operation (no partial updates).
 	 */
 	public function reorder_items( WP_REST_Request $request ) {
-		$order = $request->get_param( 'order' ); // [ { id, sort_order } ]
+		$gallery_id = absint( $request->get_param( 'gallery_id' ) );
+		$order      = $request->get_param( 'order' ); // [ { id, sort_order } ]
 
 		if ( ! is_array( $order ) ) {
-			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid order data.', 'ninja-gallery' ) );
+			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid order data.', 'pninja-media-gallery' ) );
 		}
 
-		$model = new ImageModel();
+		$model      = new ImageModel();
+		$normalized = array();
+
 		foreach ( $order as $item ) {
-			if ( isset( $item['id'], $item['sort_order'] ) ) {
-				$model->update( absint( $item['id'] ), array( 'sort_order' => absint( $item['sort_order'] ) ) );
+			if ( ! isset( $item['id'], $item['sort_order'] ) ) {
+				continue;
 			}
+
+			$image_id = absint( $item['id'] );
+			$image    = $model->find( $image_id );
+
+			// Reject the batch if any image doesn't exist or belongs to a different gallery.
+			if ( ! $image || (int) $image->gallery_id !== $gallery_id ) {
+				return $this->errorResponse(
+					'pnpng_forbidden',
+					__( 'One or more images do not belong to this gallery.', 'pninja-media-gallery' ),
+					403
+				);
+			}
+
+			$normalized[] = array(
+				'id'         => $image_id,
+				'sort_order' => absint( $item['sort_order'] ),
+			);
+		}
+
+		foreach ( $normalized as $item ) {
+			$model->update( $item['id'], array( 'sort_order' => $item['sort_order'] ) );
 		}
 
 		return $this->successResponse( array( 'reordered' => true ) );

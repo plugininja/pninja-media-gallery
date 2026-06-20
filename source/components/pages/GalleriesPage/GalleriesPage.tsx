@@ -30,24 +30,24 @@ const formatDate = (iso: string) => {
 };
 
 const LAYOUT_LABELS: Record<string, string> = {
-    grid: __("Grid", "ninja-gallery"),
-    masonry: __("Masonry", "ninja-gallery"),
-    justified: __("Justified", "ninja-gallery"),
-    album: __("Album", "ninja-gallery"),
+    grid: __("Grid", "pninja-media-gallery"),
+    masonry: __("Masonry", "pninja-media-gallery"),
+    justified: __("Justified", "pninja-media-gallery"),
+    album: __("Album", "pninja-media-gallery"),
 };
 
 // SelectBox skips val=="" internally, so never use empty-value options.
 // Use placeholder for the "all" state and value=[] when nothing is selected.
 const STATUS_OPTIONS = [
-    { value: "publish", name: __("Published", "ninja-gallery") },
-    { value: "draft", name: __("Draft", "ninja-gallery") },
+    { value: "publish", name: __("Published", "pninja-media-gallery") },
+    { value: "draft", name: __("Draft", "pninja-media-gallery") },
 ];
 
 const LAYOUT_OPTIONS = [
-    { value: "grid", name: __("Grid", "ninja-gallery") },
-    { value: "masonry", name: __("Masonry", "ninja-gallery") },
-    { value: "justified", name: __("Justified", "ninja-gallery") },
-    { value: "album", name: __("Album", "ninja-gallery") },
+    { value: "grid", name: __("Grid", "pninja-media-gallery") },
+    { value: "masonry", name: __("Masonry", "pninja-media-gallery") },
+    { value: "justified", name: __("Justified", "pninja-media-gallery") },
+    { value: "album", name: __("Album", "pninja-media-gallery") },
 ];
 
 // ─── gallery card ─────────────────────────────────────────────────────────────
@@ -59,7 +59,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
     const [copied, setCopied] = useState(false);
 
     const count = gallery.image_count ?? 0;
-    const shortcode = `[ninja_gallery id="${gallery.id}"]`;
+    const shortcode = `[pninja_media_gallery id="${gallery.id}"]`;
 
     const copyShortcode = () => {
         navigator.clipboard?.writeText(shortcode);
@@ -72,7 +72,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
             window.confirm(
                 __(
                     "Delete this gallery? This cannot be undone.",
-                    "ninja-gallery",
+                    "pninja-media-gallery",
                 ),
             )
         ) {
@@ -189,8 +189,8 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                         <Status
                             text={
                                 gallery.status === "publish"
-                                    ? __("Published", "ninja-gallery")
-                                    : __("Draft", "ninja-gallery")
+                                    ? __("Published", "pninja-media-gallery")
+                                    : __("Draft", "pninja-media-gallery")
                             }
                             color={
                                 gallery.status === "publish"
@@ -214,7 +214,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                                     }}
                                     ariaLabel={__(
                                         "Gallery actions",
-                                        "ninja-gallery",
+                                        "pninja-media-gallery",
                                     )}
                                 />
                             </Dropdown.Trigger>
@@ -236,7 +236,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                                             fontSize="sm"
                                         />
                                         <Text size="sm">
-                                            {__("Edit", "ninja-gallery")}
+                                            {__("Edit", "pninja-media-gallery")}
                                         </Text>
                                     </InlineStack>
                                 </Dropdown.MenuItem>
@@ -259,10 +259,10 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                                             color={copied ? "success" : undefined}
                                         >
                                             {copied
-                                                ? __("Copied!", "ninja-gallery")
+                                                ? __("Copied!", "pninja-media-gallery")
                                                 : __(
                                                       "Copy Shortcode",
-                                                      "ninja-gallery",
+                                                      "pninja-media-gallery",
                                                   )}
                                         </Text>
                                     </InlineStack>
@@ -276,7 +276,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                                             fontSize="sm"
                                         />
                                         <Text size="sm">
-                                            {__("Duplicate", "ninja-gallery")}
+                                            {__("Duplicate", "pninja-media-gallery")}
                                         </Text>
                                     </InlineStack>
                                 </Dropdown.MenuItem>
@@ -291,7 +291,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                                             fontSize="sm"
                                         />
                                         <Text size="sm" color="danger">
-                                            {__("Delete", "ninja-gallery")}
+                                            {__("Delete", "pninja-media-gallery")}
                                         </Text>
                                     </InlineStack>
                                 </Dropdown.MenuItem>
@@ -312,7 +312,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                     <Text size="xs" color="gray-500">
                         {LAYOUT_LABELS[gallery.layout] || gallery.layout}
                         {"  ·  "}
-                        {count} {__("images", "ninja-gallery")}
+                        {count} {__("images", "pninja-media-gallery")}
                     </Text>
                 </InlineStack>
 
@@ -329,13 +329,13 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
                             whiteSpace: "nowrap",
                             transition: "color .2s",
                         }}
-                        title={__("Click to copy shortcode", "ninja-gallery")}
+                        title={__("Click to copy shortcode", "pninja-media-gallery")}
                         onClick={(e: React.MouseEvent) => {
                             e.stopPropagation();
                             copyShortcode();
                         }}
                     >
-                        {copied ? __("Copied!", "ninja-gallery") : shortcode}
+                        {copied ? __("Copied!", "pninja-media-gallery") : shortcode}
                     </Text>
                     <Text size="xs" color="gray-400">
                         {formatDate(gallery.created_at)}
@@ -371,12 +371,12 @@ const GalleriesPage = () => {
             <InlineStack align="between" blockAlign="center" gap={12}>
                 <BlockStack gap={4}>
                     <Text as="h1" size="xl" weight="semibold">
-                        {__("Galleries", "ninja-gallery")}
+                        {__("Galleries", "pninja-media-gallery")}
                     </Text>
                     <Text size="sm" color="gray-500">
                         {__(
                             "Manage all your image galleries — everything's free, always.",
-                            "ninja-gallery",
+                            "pninja-media-gallery",
                         )}
                     </Text>
                 </BlockStack>
@@ -385,7 +385,7 @@ const GalleriesPage = () => {
                     startIcon="add"
                     onClick={() => navigate("/gallery/new")}
                 >
-                    {__("New Gallery", "ninja-gallery")}
+                    {__("New Gallery", "pninja-media-gallery")}
                 </Button>
             </InlineStack>
 
@@ -394,7 +394,7 @@ const GalleriesPage = () => {
                 <div style={{ flex: "1 1 220px", minWidth: 0 }}>
                     <Input
                         value={search}
-                        placeholder={__("Search galleries…", "ninja-gallery")}
+                        placeholder={__("Search galleries…", "pninja-media-gallery")}
                         color="primary-light"
                         suffix={<Icon name="search" color="gray-500" />}
                         onChange={(v: string | number) => setSearch(String(v))}
@@ -406,7 +406,7 @@ const GalleriesPage = () => {
                 <SelectBox
                     options={STATUS_OPTIONS}
                     value={statusFilter ? [statusFilter] : []}
-                    placeholder={__("All Status", "ninja-gallery")}
+                    placeholder={__("All Status", "pninja-media-gallery")}
                     onChange={(vals: string[]) =>
                         setStatusFilter(vals[0] ?? "")
                     }
@@ -416,7 +416,7 @@ const GalleriesPage = () => {
                 <SelectBox
                     options={LAYOUT_OPTIONS}
                     value={layoutFilter ? [layoutFilter] : []}
-                    placeholder={__("All Layouts", "ninja-gallery")}
+                    placeholder={__("All Layouts", "pninja-media-gallery")}
                     onChange={(vals: string[]) =>
                         setLayoutFilter(vals[0] ?? "")
                     }
@@ -434,7 +434,7 @@ const GalleriesPage = () => {
                 >
                     <Loading />
                     <Text size="sm" color="gray-500">
-                        {__("Loading…", "ninja-gallery")}
+                        {__("Loading…", "pninja-media-gallery")}
                     </Text>
                 </BlockStack>
             )}
@@ -450,21 +450,21 @@ const GalleriesPage = () => {
                     }
                     title={
                         galleries.length === 0
-                            ? __("No galleries yet", "ninja-gallery")
+                            ? __("No galleries yet", "pninja-media-gallery")
                             : __(
                                   "No galleries match your filters",
-                                  "ninja-gallery",
+                                  "pninja-media-gallery",
                               )
                     }
                     description={
                         galleries.length === 0
                             ? __(
                                   "Create your first gallery to get started.",
-                                  "ninja-gallery",
+                                  "pninja-media-gallery",
                               )
                             : __(
                                   "Try adjusting your search or filters.",
-                                  "ninja-gallery",
+                                  "pninja-media-gallery",
                               )
                     }
                     style={{ padding: "80px 0" }}
@@ -475,7 +475,7 @@ const GalleriesPage = () => {
                             startIcon="add"
                             onClick={() => navigate("/gallery/new")}
                         >
-                            {__("New Gallery", "ninja-gallery")}
+                            {__("New Gallery", "pninja-media-gallery")}
                         </Button>
                     )}
                 </EmptyState>

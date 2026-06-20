@@ -1354,32 +1354,32 @@ body:has(.pnpnd-top-level-wrapper) {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/poppins-v23-latin-regular.405055dd.woff2) format("woff2");
+  src: url(../fonts/poppins-v23-latin-regular.405055dd.woff2) format("woff2");
 }
 @font-face {
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  src: url(fonts/poppins-v23-latin-500.08491d3f.woff2) format("woff2");
+  src: url(../fonts/poppins-v23-latin-500.08491d3f.woff2) format("woff2");
 }
 @font-face {
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  src: url(fonts/poppins-v23-latin-600.91145014.woff2) format("woff2");
+  src: url(../fonts/poppins-v23-latin-600.91145014.woff2) format("woff2");
 }
 @font-face {
   font-display: swap;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  src: url(fonts/poppins-v23-latin-700.d86662fe.woff2) format("woff2");
+  src: url(../fonts/poppins-v23-latin-700.d86662fe.woff2) format("woff2");
 }
 @font-face {
   font-family: "pnpnd-icon";
-  src: url(fonts/pnpnd-icon.438b3f91.woff2) format("woff2");
+  src: url(../fonts/pnpnd-icon.438b3f91.woff2) format("woff2");
   font-style: normal;
   font-weight: normal;
 }

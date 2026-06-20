@@ -33,7 +33,7 @@ const GalleryPicker = ( { selectedId, onSelect }: GalleryPickerProps ) => {
 
 	const currentValue = selectedId
 		? [ `${ selectedId }` ]
-		: [ __( 'Select a gallery…', 'ninja-gallery' ) ];
+		: [ __( 'Select a gallery…', 'pninja-media-gallery' ) ];
 
 	return (
 		<SelectBox
@@ -44,7 +44,7 @@ const GalleryPicker = ( { selectedId, onSelect }: GalleryPickerProps ) => {
 				const match = galleries.find( ( g ) => g.id === id );
 				onSelect( id, match?.title || '' );
 			} }
-			placeholder={ __( 'Select a gallery…', 'ninja-gallery' ) }
+			placeholder={ __( 'Select a gallery…', 'pninja-media-gallery' ) }
 			loading={ isFetching || isLoading }
 			onSearch={ setSearchTerm }
 			searchable

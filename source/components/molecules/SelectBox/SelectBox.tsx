@@ -34,7 +34,7 @@ export const SelectBox = ({
     readonly = false,
     waiting = false,
     loading = false,
-    placeholder = __("Select...", "ninja-gallery"),
+    placeholder = __("Select...", "pninja-media-gallery"),
     options = [],
     value,
     defaultValue = [],
@@ -371,7 +371,7 @@ const SelectDropdown = ({
                                 setSearchText(e.target.value);
                                 onSearch?.(e.target.value);
                             }}
-                            placeholder={__("Search...", "ninja-gallery")}
+                            placeholder={__("Search...", "pninja-media-gallery")}
                             onClick={(e) => e.stopPropagation()}
                         />
                     </div>
@@ -379,12 +379,12 @@ const SelectDropdown = ({
 
                 {loading ? (
                     <div className="pn-select-loading">
-                        {__("Loading...", "ninja-gallery")}
+                        {__("Loading...", "pninja-media-gallery")}
                         <Icon name="progress_activity" className="loading" />
                     </div>
                 ) : visibleOptions.length === 0 ? (
                     <div className="pn-select-not-found">
-                        {__("No results found", "ninja-gallery")}
+                        {__("No results found", "pninja-media-gallery")}
                     </div>
                 ) : (
                     visibleOptions.map((opt) => (
@@ -428,7 +428,7 @@ const SelectDropdown = ({
                         }}
                     >
                         <span className="pn-select-clear-all-text">
-                            {__("Clear all", "ninja-gallery")}
+                            {__("Clear all", "pninja-media-gallery")}
                         </span>
                     </div>
                 )}

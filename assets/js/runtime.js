@@ -194,7 +194,7 @@
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkninja_gallery"] = globalThis["webpackChunkninja_gallery"] || [];
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkpninja_media_gallery"] = globalThis["webpackChunkpninja_media_gallery"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

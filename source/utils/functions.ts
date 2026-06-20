@@ -21,12 +21,12 @@ export const getFormatDate = ( date_string: string ): string => {
 export const formatDateToMonDayYear = ( dateTimeStr: string ): string => {
 	const date = new Date( dateTimeStr );
 	const months = [
-		__( 'Jan', 'ninja-gallery' ), __( 'Feb', 'ninja-gallery' ),
-		__( 'Mar', 'ninja-gallery' ), __( 'Apr', 'ninja-gallery' ),
-		__( 'May', 'ninja-gallery' ), __( 'Jun', 'ninja-gallery' ),
-		__( 'Jul', 'ninja-gallery' ), __( 'Aug', 'ninja-gallery' ),
-		__( 'Sep', 'ninja-gallery' ), __( 'Oct', 'ninja-gallery' ),
-		__( 'Nov', 'ninja-gallery' ), __( 'Dec', 'ninja-gallery' ),
+		__( 'Jan', 'pninja-media-gallery' ), __( 'Feb', 'pninja-media-gallery' ),
+		__( 'Mar', 'pninja-media-gallery' ), __( 'Apr', 'pninja-media-gallery' ),
+		__( 'May', 'pninja-media-gallery' ), __( 'Jun', 'pninja-media-gallery' ),
+		__( 'Jul', 'pninja-media-gallery' ), __( 'Aug', 'pninja-media-gallery' ),
+		__( 'Sep', 'pninja-media-gallery' ), __( 'Oct', 'pninja-media-gallery' ),
+		__( 'Nov', 'pninja-media-gallery' ), __( 'Dec', 'pninja-media-gallery' ),
 	];
 	return `${ months[ date.getMonth() ] } ${ date.getDate() } ${ date.getFullYear() }`;
 };

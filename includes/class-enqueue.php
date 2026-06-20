@@ -41,7 +41,7 @@ class Enqueue {
 	}
 
 	/**
-	 * Detect whether the current page contains a Ninja Gallery shortcode or block.
+	 * Detect whether the current page contains a Pninja Media Gallery shortcode or block.
 	 *
 	 * Inspects singular post content only. For other contexts — widgets, page
 	 * builders, or dynamically injected shortcodes — use the filter:
@@ -64,8 +64,8 @@ class Enqueue {
 			return false;
 		}
 
-		return has_shortcode( $post->post_content, 'ninja_gallery' )
-			|| has_block( 'ninja-gallery/gallery', $post );
+		return has_shortcode( $post->post_content, 'pninja_media_gallery' )
+			|| has_block( 'pninja-media-gallery/gallery', $post );
 	}
 
 	private function register_common_assets(): void {
@@ -121,7 +121,7 @@ class Enqueue {
 	private function enqueue_script( string $handle, array $deps = array() ): void {
 		$script_url = PNPNG_ASSETS_URL . $handle . '.js';
 		wp_enqueue_script( 'pnpng-' . $handle, $script_url, $this->build_dependencies( $handle, $deps ), $this->get_asset_version( $handle ), true );
-		wp_set_script_translations( 'pnpng-' . $handle, 'ninja-gallery', PNPNG_DIR . 'languages' );
+		wp_set_script_translations( 'pnpng-' . $handle, 'pninja-media-gallery', PNPNG_DIR . 'languages' );
 	}
 
 	private function build_dependencies( string $handle, array $deps ): array {

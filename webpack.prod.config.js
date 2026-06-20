@@ -63,6 +63,7 @@ function AddDepsPlugin(extraDeps = [], matchPattern = false) {
                 );
                 assetFiles.forEach((fullPath) => {
                     let content = fs.readFileSync(fullPath, "utf8");
+                    let changed = false;
 
                     const match = content.match(
                         /'dependencies' => array\((.*?)\)/s,
@@ -83,9 +84,49 @@ function AddDepsPlugin(extraDeps = [], matchPattern = false) {
                             /'dependencies' => array\((.*?)\)/s,
                             `'dependencies' => array(${newDeps})`,
                         );
+                        changed = true;
+                    }
 
+                    // Strip the auto-generated 'handle' key — it contains
+                    // "undefined-*" when output.filename is a function, and
+                    // PHP registers its own handles independently.
+                    if (content.includes("'handle'")) {
+                        content = content.replace(/, 'handle' => '[^']*'/, "");
+                        changed = true;
+                    }
+
+                    if (changed) {
                         fs.writeFileSync(fullPath, content, "utf8");
-                        console.log(`🔧 Updated dependencies in: ${fullPath}`);
+                        console.log(`🔧 Updated asset file: ${fullPath}`);
+                    }
+                });
+            });
+        },
+    };
+}
+
+// ======================================================================
+// Plugin: Strip undefined-* handle key from .asset.php files
+// ======================================================================
+function StripHandlePlugin() {
+    function getAssetFiles(dir) {
+        if (!fs.existsSync(dir)) return [];
+        return fs.readdirSync(dir).flatMap((file) => {
+            const fullPath = path.join(dir, file);
+            return fs.statSync(fullPath).isDirectory()
+                ? getAssetFiles(fullPath)
+                : file.endsWith(".asset.php") ? [fullPath] : [];
+        });
+    }
+    return {
+        apply(compiler) {
+            compiler.hooks.done.tap("StripHandlePlugin", () => {
+                const outputPath = compiler.options.output.path;
+                getAssetFiles(outputPath).forEach((fullPath) => {
+                    let content = fs.readFileSync(fullPath, "utf8");
+                    if (content.includes("'handle'")) {
+                        content = content.replace(/, 'handle' => '[^']*'/, "");
+                        fs.writeFileSync(fullPath, content, "utf8");
                     }
                 });
             });
@@ -116,7 +157,6 @@ class PrependSemicolonPlugin {
                                 compilation.assets[filename] = {
                                     source: () => updated,
                                     size: () => updated.length,
-                                    map: () => (asset.map ? asset.map() : null), // Preserve source maps
                                 };
                             }
                         }
@@ -133,10 +173,24 @@ class PrependSemicolonPlugin {
 // ======================================================================
 // Main Webpack Configuration for regular JS files
 // ======================================================================
+// Remap font assets from assets/js/fonts/ → assets/fonts/ by overriding
+// the generator.filename on the woff/woff2 rule from @wordpress/scripts.
+const remappedRules = (defaultConfig.module?.rules || []).map((rule) => {
+    if (rule.test?.toString().includes("woff")) {
+        return {
+            ...rule,
+            generator: { ...rule.generator, filename: "../fonts/[name].[hash:8][ext]" },
+        };
+    }
+    return rule;
+});
+
 const mainConfig = {
     ...defaultConfig,
 
     mode: "production",
+
+    devtool: false,
 
     entry: {
         admin: path.resolve(__dirname, "source/admin/admin.tsx"),
@@ -168,6 +222,10 @@ const mainConfig = {
         },
         chunkFilename: "chunks/[name].chunk.js",
         clean: true,
+    },
+
+    module: {
+        rules: remappedRules,
     },
 
     optimization: {
@@ -210,9 +268,10 @@ const mainConfig = {
     plugins: [
         ...(defaultConfig.plugins || []),
         new PrependSemicolonPlugin(),
+        StripHandlePlugin(),
         new AddDepsPlugin(
             ["pnpng-shared"],
-            /blocks\/ninja-gallery\//,
+            /blocks\/pninja-media-gallery\//,
         ),
         new CopyPlugin({
             patterns: [
@@ -222,8 +281,8 @@ const mainConfig = {
 					noErrorOnMissing: true,
                 },
                 {
-                    from: path.resolve(__dirname, "source/assets/fonts"),
-                    to: path.resolve(__dirname, "assets/fonts"),
+                    from: path.resolve(__dirname, "source/assets/fonts/LICENSE-Poppins.txt"),
+                    to: path.resolve(__dirname, "assets/fonts/LICENSE-Poppins.txt"),
 					noErrorOnMissing: true,
                 },
                 {

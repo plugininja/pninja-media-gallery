@@ -26,13 +26,13 @@ const IntroModule = ( { attributes, setAttributes }: IntroModuleProps ) => {
 					<BlockStack gap={ 8 } align="center" inlineAlign="center">
 						<Icon name="imagesmode" fontSize="3xl" color="primary" />
 						<Text as="p" size="sm" weight="semibold">
-							{ title || __( 'Ninja Gallery', 'ninja-gallery' ) }
+							{ title || __( 'Pninja Media Gallery', 'pninja-media-gallery' ) }
 						</Text>
 						<Text as="p" size="xs">
-							{ __( 'Gallery ID:', 'ninja-gallery' ) }{ ' ' }
+							{ __( 'Gallery ID:', 'pninja-media-gallery' ) }{ ' ' }
 							<code>{ id }</code>{ ' ' }—{ ' ' }
-							{ __( 'Shortcode:', 'ninja-gallery' ) }{ ' ' }
-							<code>{ `[ninja_gallery id="${ id }"]` }</code>
+							{ __( 'Shortcode:', 'pninja-media-gallery' ) }{ ' ' }
+							<code>{ `[pninja_media_gallery id="${ id }"]` }</code>
 						</Text>
 						<Provider store={ store }>
 							<GalleryPicker
@@ -47,12 +47,12 @@ const IntroModule = ( { attributes, setAttributes }: IntroModuleProps ) => {
 					<BlockStack gap={ 10 } align="center" inlineAlign="center">
 						<Icon name="imagesmode" fontSize="5xl" color="primary" />
 						<Text as="h3" size="lg" weight="semibold">
-							{ __( 'Ninja Gallery', 'ninja-gallery' ) }
+							{ __( 'Pninja Media Gallery', 'pninja-media-gallery' ) }
 						</Text>
 						<Text as="p" size="sm">
 							{ __(
 								'Select a gallery to embed it in your content.',
-								'ninja-gallery',
+								'pninja-media-gallery',
 							) }
 						</Text>
 						<Provider store={ store }>

@@ -33,8 +33,8 @@ class Admin {
 		// Minimum capability to see the top-level menu matches the lowest-access
 		// submenu (gallery CRUD). Settings is locked to manage_options separately.
 		add_menu_page(
-			__( 'Ninja Gallery', 'ninja-gallery' ),
-			__( 'Ninja Gallery', 'ninja-gallery' ),
+			__( 'Pninja Media Gallery', 'pninja-media-gallery' ),
+			__( 'Pninja Media Gallery', 'pninja-media-gallery' ),
 			'edit_posts',
 			'pnpng-admin',
 			array( $this, 'render_page' ),
@@ -44,8 +44,8 @@ class Admin {
 
 		add_submenu_page(
 			'pnpng-admin',
-			__( 'All Galleries', 'ninja-gallery' ),
-			__( 'All Galleries', 'ninja-gallery' ),
+			__( 'All Galleries', 'pninja-media-gallery' ),
+			__( 'All Galleries', 'pninja-media-gallery' ),
 			'edit_posts',
 			'pnpng-admin',
 			array( $this, 'render_page' )
@@ -53,8 +53,8 @@ class Admin {
 
 		add_submenu_page(
 			'pnpng-admin',
-			__( 'Add New Gallery', 'ninja-gallery' ),
-			__( 'Add New', 'ninja-gallery' ),
+			__( 'Add New Gallery', 'pninja-media-gallery' ),
+			__( 'Add New', 'pninja-media-gallery' ),
 			'edit_posts',
 			'pnpng-admin',
 			array( $this, 'render_page' )
@@ -62,8 +62,8 @@ class Admin {
 
 		add_submenu_page(
 			'pnpng-admin',
-			__( 'Settings', 'ninja-gallery' ),
-			__( 'Settings', 'ninja-gallery' ),
+			__( 'Settings', 'pninja-media-gallery' ),
+			__( 'Settings', 'pninja-media-gallery' ),
 			'manage_options',
 			'pnpng-admin',
 			array( $this, 'render_page' )
@@ -77,7 +77,7 @@ class Admin {
 	 */
 	public function render_page() {
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'ninja-gallery' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'pninja-media-gallery' ) );
 		}
 		echo '<div id="' . esc_attr( 'pnpng-admin' ) . '" class="' . esc_attr( 'pnpng-admin-root' ) . '"></div>';
 	}

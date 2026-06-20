@@ -9,11 +9,11 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 /**
  * REST controller for /galleries endpoints.
  *
- * GET    /ninja-gallery/v1/galleries         — list galleries
- * POST   /ninja-gallery/v1/galleries         — create gallery
- * GET    /ninja-gallery/v1/galleries/{id}    — get single
- * PUT    /ninja-gallery/v1/galleries/{id}    — update
- * DELETE /ninja-gallery/v1/galleries/{id}    — delete
+ * GET    /pninja-media-gallery/v1/galleries         — list galleries
+ * POST   /pninja-media-gallery/v1/galleries         — create gallery
+ * GET    /pninja-media-gallery/v1/galleries/{id}    — get single
+ * PUT    /pninja-media-gallery/v1/galleries/{id}    — update
+ * DELETE /pninja-media-gallery/v1/galleries/{id}    — delete
  */
 class GalleryController extends BaseController {
 
@@ -81,6 +81,9 @@ class GalleryController extends BaseController {
 	/**
 	 * GET /galleries — paginated list.
 	 *
+	 * Unauthenticated callers receive only published galleries.
+	 * Users with edit_posts receive all galleries (admin SPA).
+	 *
 	 * @param  WP_REST_Request $request
 	 * @return \WP_REST_Response
 	 */
@@ -89,7 +92,9 @@ class GalleryController extends BaseController {
 		$page     = $request->get_param( 'page' );
 
 		$model  = new GalleryModel();
-		$result = $model->get_list( $per_page, $page );
+		$result = current_user_can( 'edit_posts' )
+			? $model->get_list( $per_page, $page )
+			: $model->get_published( $per_page, $page );
 
 		return $this->successResponse(
 			array(
@@ -107,6 +112,8 @@ class GalleryController extends BaseController {
 	/**
 	 * GET /galleries/{id} — single gallery with images.
 	 *
+	 * Unauthenticated callers may only retrieve published galleries.
+	 *
 	 * @param  WP_REST_Request $request
 	 * @return \WP_REST_Response
 	 */
@@ -116,7 +123,12 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'ninja-gallery' ), 404 );
+			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+		}
+
+		// Non-editors must not see unpublished galleries.
+		if ( 'publish' !== $gallery->status && ! current_user_can( 'edit_posts' ) ) {
+			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		return $this->successResponse( $gallery );
@@ -155,7 +167,7 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'ninja-gallery' ), 404 );
+			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$data   = $this->extract_item_data( $request );
@@ -182,7 +194,7 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'ninja-gallery' ), 404 );
+			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->delete( $id );

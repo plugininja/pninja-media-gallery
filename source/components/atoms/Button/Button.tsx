@@ -107,7 +107,7 @@ const Button = ({
                     <img
                         referrerPolicy="no-referrer"
                         src={iconUrl}
-                        alt={__("button-icon", "ninja-gallery")}
+                        alt={__("button-icon", "pninja-media-gallery")}
                     />
                 );
             }

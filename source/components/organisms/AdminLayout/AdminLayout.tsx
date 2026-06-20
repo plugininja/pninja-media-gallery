@@ -11,8 +11,8 @@ interface AdminLayoutProps {
 }
 
 const ADMIN_MENUS = [
-	{ key: 'galleries', title: __( 'Galleries', 'ninja-gallery' ), icon: 'grid_view' },
-	{ key: 'settings',  title: __( 'Settings',  'ninja-gallery' ), icon: 'settings' },
+	{ key: 'galleries', title: __( 'Galleries', 'pninja-media-gallery' ), icon: 'grid_view' },
+	{ key: 'settings',  title: __( 'Settings',  'pninja-media-gallery' ), icon: 'settings' },
 ];
 
 const AdminLayout = ( { children }: AdminLayoutProps ) => {
@@ -35,7 +35,7 @@ const AdminLayout = ( { children }: AdminLayoutProps ) => {
 			startIcon="add"
 			onClick={ () => navigate( '/gallery/new' ) }
 		>
-			{ __( 'New Gallery', 'ninja-gallery' ) }
+			{ __( 'New Gallery', 'pninja-media-gallery' ) }
 		</Button>
 	);
 

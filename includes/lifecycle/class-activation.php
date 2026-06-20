@@ -24,31 +24,15 @@ class Activation {
 	/**
 	 * Run on every plugins_loaded boot.
 	 *
-	 * Skips only when DB version matches AND the tables have the correct schema.
-	 * This ensures a broken schema is repaired on the next request even if the
-	 * version option was incorrectly marked as up-to-date by a prior failed run.
+	 * Returns immediately when the stored DB version matches the current constant;
+	 * get_option() is served from WP's object cache so no SQL is executed on the
+	 * fast path. Schema checks and repairs only run when the version has changed.
 	 *
 	 * @return void
 	 */
 	public static function maybe_upgrade() {
-		global $wpdb;
-
-		$version_ok = get_option( 'pnpng_db_version' ) === PNPNG_DB_VERSION;
-
-		if ( $version_ok ) {
-			// Fast-path: only skip when the primary table actually has the id column.
-			$gallery_table = $wpdb->prefix . 'pnpng_galleries';
-
-			// If the table doesn't exist at all, let create_tables() handle it.
-			if ( ! $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $gallery_table ) ) ) { // phpcs:ignore
-				// Tables not created yet — fall through to create_tables().
-			} else {
-				$id_col = $wpdb->get_results( "SHOW COLUMNS FROM `{$gallery_table}` LIKE 'id'" ); // phpcs:ignore
-				if ( ! empty( $id_col ) ) {
-					return; // Version matches and schema is correct — nothing to do.
-				}
-				// Schema is broken despite version match; fall through to repair.
-			}
+		if ( get_option( 'pnpng_db_version' ) === PNPNG_DB_VERSION ) {
+			return;
 		}
 
 		self::create_tables();

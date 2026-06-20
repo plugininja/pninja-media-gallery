@@ -1,14 +1,14 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 3,
-    "name": "ninja-gallery/gallery",
+    "name": "pninja-media-gallery/gallery",
     "version": "1.0.0",
-    "title": "Ninja Gallery",
-    "category": "ninja-gallery",
+    "title": "Pninja Media Gallery",
+    "category": "pninja-media-gallery",
     "icon": "format-gallery",
-    "description": "Embed a Ninja Gallery into your content",
-    "keywords": ["gallery", "images", "photos", "ninja gallery"],
-    "textdomain": "ninja-gallery",
+    "description": "Embed a Pninja Media Gallery into your content",
+    "keywords": ["gallery", "images", "photos", "masonry"],
+    "textdomain": "pninja-media-gallery",
     "supports": {
         "html": false,
         "align": ["wide", "full"],
@@ -26,6 +26,5 @@
             "default": ""
         }
     },
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./index.css"
+    "editorScript": "file:./index.js"
 }

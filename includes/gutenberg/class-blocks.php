@@ -7,7 +7,7 @@ use Pnpnd\NG\Traits\Singleton;
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
- * Registers the Ninja Gallery Gutenberg block and custom block category.
+ * Registers the Pninja Media Gallery Gutenberg block and custom block category.
  */
 class Blocks {
 
@@ -48,20 +48,20 @@ class Blocks {
 	}
 
 	/**
-	 * Add a "Ninja Gallery" category to the block inserter.
+	 * Add a "Pninja Media Gallery" category to the block inserter.
 	 *
 	 * @param  array                   $categories Existing block categories.
 	 * @param  \WP_Block_Editor_Context $context    Editor context.
 	 * @return array
 	 */
 	public function register_block_category( array $categories, $context ) {
-		$ninja_gallery_category = array(
-			'slug'  => 'ninja-gallery',
-			'title' => __( 'Ninja Gallery', 'ninja-gallery' ),
+		$pninja_media_gallery_category = array(
+			'slug'  => 'pninja-media-gallery',
+			'title' => __( 'Pninja Media Gallery', 'pninja-media-gallery' ),
 			'icon'  => 'format-gallery',
 		);
 
-		array_unshift( $categories, $ninja_gallery_category );
+		array_unshift( $categories, $pninja_media_gallery_category );
 
 		return $categories;
 	}

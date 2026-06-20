@@ -1,5 +1,5 @@
 /**
- * Ninja Gallery — Frontend renderer.
+ * Pninja Media Gallery — Frontend renderer.
  * Finds all .pnpng-gallery containers and mounts the gallery widget.
  */
 import { createRoot } from '@wordpress/element';

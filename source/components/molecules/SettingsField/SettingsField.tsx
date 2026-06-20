@@ -83,7 +83,7 @@ const SettingsField: SettingsFieldProps = ({
                         href={docLink}
                         target="_blank"
                     >
-                        {__("Documentation", "ninja-gallery")}
+                        {__("Documentation", "pninja-media-gallery")}
                     </Button>
                 )}
             </InlineStack>
@@ -182,7 +182,7 @@ const SettingsSubField: React.FC<SettingsSubFieldProps> = ({
                         href={docLink}
                         target="_blank"
                     >
-                        {__("Documentation", "ninja-gallery")}
+                        {__("Documentation", "pninja-media-gallery")}
                     </Button>
                 )}
             </InlineStack>

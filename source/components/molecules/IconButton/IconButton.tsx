@@ -90,7 +90,7 @@ const IconButton = ({
               <img
                   referrerPolicy="no-referrer"
                   src={iconUrl}
-                  alt={__("icon", "ninja-gallery")}
+                  alt={__("icon", "pninja-media-gallery")}
                   style={{
                       padding: "3px",
                   }}

@@ -27,6 +27,47 @@ const copyBlockPatterns = blockFolders.map((block) => ({
     to: path.join(`blocks/${block}`, "block.json"),
 }));
 
+// Remap font assets from assets/js/fonts/ → assets/fonts/ by overriding
+// the generator.filename on the woff/woff2 rule from @wordpress/scripts.
+const remappedRules = (defaultConfig.module?.rules || []).map((rule) => {
+    if (rule.test?.toString().includes("woff")) {
+        return {
+            ...rule,
+            generator: { ...rule.generator, filename: "../fonts/[name].[hash:8][ext]" },
+        };
+    }
+    return rule;
+});
+
+// Strip the auto-generated 'handle' key from .asset.php files — it contains
+// "undefined-*" when output.filename is a function, and PHP registers its own
+// script handles independently.
+function StripHandlePlugin() {
+    function getAssetFiles(dir) {
+        if (!fs.existsSync(dir)) return [];
+        return fs.readdirSync(dir).flatMap((file) => {
+            const fullPath = path.join(dir, file);
+            return fs.statSync(fullPath).isDirectory()
+                ? getAssetFiles(fullPath)
+                : file.endsWith(".asset.php") ? [fullPath] : [];
+        });
+    }
+    return {
+        apply(compiler) {
+            compiler.hooks.done.tap("StripHandlePlugin", () => {
+                const outputPath = compiler.options.output.path;
+                getAssetFiles(outputPath).forEach((fullPath) => {
+                    let content = fs.readFileSync(fullPath, "utf8");
+                    if (content.includes("'handle'")) {
+                        content = content.replace(/, 'handle' => '[^']*'/, "");
+                        fs.writeFileSync(fullPath, content, "utf8");
+                    }
+                });
+            });
+        },
+    };
+}
+
 export default {
     ...defaultConfig,
 
@@ -52,7 +93,7 @@ export default {
     },
 
     output: {
-        path: path.resolve(__dirname, "../assets/js"),
+        path: path.resolve(__dirname, "assets/js"),
         publicPath: "auto",
         filename: (pathData) => {
             const name = pathData.chunk.name;
@@ -67,6 +108,9 @@ export default {
         },
         chunkFilename: "chunks/[name].chunk.js",
         clean: true,
+    },
+    module: {
+        rules: remappedRules,
     },
     optimization: {
         splitChunks: {
@@ -91,26 +135,27 @@ export default {
     },
     plugins: [
         ...(defaultConfig.plugins || []),
+        StripHandlePlugin(),
         new CopyPlugin({
             patterns: [
                 {
                     from: path.resolve(__dirname, "source/assets/images"),
-                    to: path.resolve(__dirname, "../assets/images"),
+                    to: path.resolve(__dirname, "assets/images"),
 					noErrorOnMissing: true,
                 },
                 {
-                    from: path.resolve(__dirname, "source/assets/fonts"),
-                    to: path.resolve(__dirname, "../assets/fonts"),
+                    from: path.resolve(__dirname, "source/assets/fonts/LICENSE-Poppins.txt"),
+                    to: path.resolve(__dirname, "assets/fonts/LICENSE-Poppins.txt"),
 					noErrorOnMissing: true,
                 },
                 {
                     from: path.resolve(__dirname, "source/assets/plugins"),
-                    to: path.resolve(__dirname, "../assets/plugins"),
+                    to: path.resolve(__dirname, "assets/plugins"),
 					noErrorOnMissing: true,
                 },
                 {
                     from: path.resolve(__dirname, "source/assets/presets"),
-                    to: path.resolve(__dirname, "../assets/presets"),
+                    to: path.resolve(__dirname, "assets/presets"),
 					noErrorOnMissing: true,
                 },
                 ...copyBlockPatterns,

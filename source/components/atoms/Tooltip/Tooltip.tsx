@@ -4,7 +4,7 @@ import { __ } from "@wordpress/i18n";
 import clsx from "clsx";
 
 const Tooltip: React.FC<TooltipProps> = ({
-    title = __("Tooltip", "ninja-gallery"),
+    title = __("Tooltip", "pninja-media-gallery"),
     component,
     style,
     className,

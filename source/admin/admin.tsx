@@ -1,5 +1,5 @@
 /**
- * Ninja Gallery — Admin SPA entry point.
+ * Pninja Media Gallery — Admin SPA entry point.
  * Mounts the React app at #pnpng-admin using HashRouter.
  */
 import '~/assets/sass/common.scss';

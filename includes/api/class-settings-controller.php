@@ -9,8 +9,8 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 /**
  * REST controller for plugin settings.
  *
- * GET  /ninja-gallery/v1/settings
- * POST /ninja-gallery/v1/settings
+ * GET  /pninja-media-gallery/v1/settings
+ * POST /pninja-media-gallery/v1/settings
  */
 class SettingsController extends BaseController {
 
@@ -27,12 +27,12 @@ class SettingsController extends BaseController {
 				array(
 					'methods'             => \WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_settings' ),
-					'permission_callback' => array( $this, 'permissions_check' ),
+					'permission_callback' => array( $this, 'admin_permissions_check' ),
 				),
 				array(
 					'methods'             => \WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'save_settings' ),
-					'permission_callback' => array( $this, 'permissions_check' ),
+					'permission_callback' => array( $this, 'admin_permissions_check' ),
 				),
 			)
 		);
@@ -51,7 +51,7 @@ class SettingsController extends BaseController {
 	public function save_settings( WP_REST_Request $request ) {
 		$body = $request->get_json_params();
 		if ( ! is_array( $body ) ) {
-			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid settings data.', 'ninja-gallery' ) );
+			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid settings data.', 'pninja-media-gallery' ) );
 		}
 
 		/**

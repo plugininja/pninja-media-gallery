@@ -37,11 +37,11 @@ import Text          from '~/components/atoms/Text';
 type TabKey = 'content' | 'layout' | 'style' | 'lightbox' | 'advanced';
 
 const TABS: { key: TabKey; title: string; icon: string }[] = [
-	{ key: 'content',  title: __( 'Content',  'ninja-gallery' ), icon: 'photo_library' },
-	{ key: 'layout',   title: __( 'Layout',   'ninja-gallery' ), icon: 'grid_view' },
-	{ key: 'style',    title: __( 'Style',    'ninja-gallery' ), icon: 'palette' },
-	{ key: 'lightbox', title: __( 'Lightbox', 'ninja-gallery' ), icon: 'open_in_full' },
-	{ key: 'advanced', title: __( 'Advanced', 'ninja-gallery' ), icon: 'tune' },
+	{ key: 'content',  title: __( 'Content',  'pninja-media-gallery' ), icon: 'photo_library' },
+	{ key: 'layout',   title: __( 'Layout',   'pninja-media-gallery' ), icon: 'grid_view' },
+	{ key: 'style',    title: __( 'Style',    'pninja-media-gallery' ), icon: 'palette' },
+	{ key: 'lightbox', title: __( 'Lightbox', 'pninja-media-gallery' ), icon: 'open_in_full' },
+	{ key: 'advanced', title: __( 'Advanced', 'pninja-media-gallery' ), icon: 'tune' },
 ];
 
 const DEFAULT_SETTINGS: Partial<Gallery> = {
@@ -65,10 +65,10 @@ const DEFAULT_SETTINGS: Partial<Gallery> = {
 };
 
 const LAYOUT_OPTIONS = [
-	{ value: 'grid',      label: __( 'Grid',      'ninja-gallery' ), sub: __( 'Equal-size tiles', 'ninja-gallery' ) },
-	{ value: 'masonry',   label: __( 'Masonry',   'ninja-gallery' ), sub: __( 'Pinterest-style',  'ninja-gallery' ) },
-	{ value: 'justified', label: __( 'Justified', 'ninja-gallery' ), sub: __( 'Full-width rows',  'ninja-gallery' ) },
-	{ value: 'album',     label: __( 'Album',     'ninja-gallery' ), sub: __( 'Featured + grid',  'ninja-gallery' ) },
+	{ value: 'grid',      label: __( 'Grid',      'pninja-media-gallery' ), sub: __( 'Equal-size tiles', 'pninja-media-gallery' ) },
+	{ value: 'masonry',   label: __( 'Masonry',   'pninja-media-gallery' ), sub: __( 'Pinterest-style',  'pninja-media-gallery' ) },
+	{ value: 'justified', label: __( 'Justified', 'pninja-media-gallery' ), sub: __( 'Full-width rows',  'pninja-media-gallery' ) },
+	{ value: 'album',     label: __( 'Album',     'pninja-media-gallery' ), sub: __( 'Featured + grid',  'pninja-media-gallery' ) },
 ];
 
 // ─── sub-components ──────────────────────────────────────────────────────────
@@ -154,10 +154,10 @@ function openWpMedia( onSelect: ( attachments: PendingImage[] ) => void, frameRe
 	if ( typeof ( window as any ).wp === 'undefined' ) return;
 	if ( ! frameRef.current ) {
 		frameRef.current = ( window as any ).wp.media( {
-			title:    __( 'Select Images', 'ninja-gallery' ),
+			title:    __( 'Select Images', 'pninja-media-gallery' ),
 			multiple: true,
 			library:  { type: 'image' },
-			button:   { text: __( 'Add to Gallery', 'ninja-gallery' ) },
+			button:   { text: __( 'Add to Gallery', 'pninja-media-gallery' ) },
 		} );
 		frameRef.current.on( 'select', () => {
 			const selected: PendingImage[] = frameRef.current.state().get( 'selection' ).toJSON().map( ( att: any ) => ( {
@@ -191,7 +191,7 @@ const ImageThumbGrid = ( { images, onRemove }: ImageThumbGridProps ) => (
 						variant="error"
 						fontSize="xs"
 						border={ false }
-						ariaLabel={ __( 'Remove image', 'ninja-gallery' ) }
+						ariaLabel={ __( 'Remove image', 'pninja-media-gallery' ) }
 						onClick={ () => onRemove( img.id ) }
 					/>
 				</div>
@@ -234,17 +234,17 @@ const ImageList = ( { galleryId, autoOpen = false }: ImageListProps ) => {
 		<BlockStack gap={ 12 }>
 			<InlineStack align="between" blockAlign="center">
 				<Text size="sm" color="gray-500">
-					{ images.length > 0 ? `${ images.length } ${ __( 'images', 'ninja-gallery' ) }` : '' }
+					{ images.length > 0 ? `${ images.length } ${ __( 'images', 'pninja-media-gallery' ) }` : '' }
 				</Text>
 				<Button variant="outlined" size="small" startIcon="add_photo_alternate" disabled={ isAdding } onClick={ openLib }>
-					{ isAdding ? __( 'Adding…', 'ninja-gallery' ) : __( 'Add Images', 'ninja-gallery' ) }
+					{ isAdding ? __( 'Adding…', 'pninja-media-gallery' ) : __( 'Add Images', 'pninja-media-gallery' ) }
 				</Button>
 			</InlineStack>
 
 			{ images.length === 0 ? (
 				<EmptyState
 					icon={ <Icon name="add_photo_alternate" color="gray-300" fontSize="3xl" /> }
-					description={ __( 'No images yet. Click "Add Images" to get started.', 'ninja-gallery' ) }
+					description={ __( 'No images yet. Click "Add Images" to get started.', 'pninja-media-gallery' ) }
 				/>
 			) : (
 				<ImageThumbGrid
@@ -279,20 +279,20 @@ const NewGalleryImagePicker = ( { images, onChange }: NewGalleryImagePickerProps
 		<BlockStack gap={ 12 }>
 			<InlineStack align="between" blockAlign="center">
 				<Text size="sm" color="gray-500">
-					{ images.length > 0 ? `${ images.length } ${ __( 'images', 'ninja-gallery' ) }` : '' }
+					{ images.length > 0 ? `${ images.length } ${ __( 'images', 'pninja-media-gallery' ) }` : '' }
 				</Text>
 				<Button variant="outlined" size="small" startIcon="add_photo_alternate" onClick={ openLib }>
-					{ __( 'Add Images', 'ninja-gallery' ) }
+					{ __( 'Add Images', 'pninja-media-gallery' ) }
 				</Button>
 			</InlineStack>
 
 			{ images.length === 0 ? (
 				<EmptyState
 					icon={ <Icon name="add_photo_alternate" color="gray-300" fontSize="3xl" /> }
-					description={ __( 'No images yet. Click "Add Images" to pick from your media library.', 'ninja-gallery' ) }
+					description={ __( 'No images yet. Click "Add Images" to pick from your media library.', 'pninja-media-gallery' ) }
 				>
 					<Button variant="primary" size="small" startIcon="add_photo_alternate" onClick={ openLib }>
-						{ __( 'Add Images', 'ninja-gallery' ) }
+						{ __( 'Add Images', 'pninja-media-gallery' ) }
 					</Button>
 				</EmptyState>
 			) : (
@@ -328,7 +328,7 @@ const GalleryEditPage = () => {
 	const [ copied,    setCopied    ] = useState( false );
 	const [ saveError, setSaveError ] = useState<string | null>( null );
 
-	const shortcode     = isNew ? '' : `[ninja_gallery id="${ id }"]`;
+	const shortcode     = isNew ? '' : `[pninja_media_gallery id="${ id }"]`;
 	const copyShortcode = () => {
 		if ( ! shortcode ) return;
 		navigator.clipboard?.writeText( shortcode );
@@ -368,14 +368,14 @@ const GalleryEditPage = () => {
 
 	const saveGallery = async ( status: 'publish' | 'draft' ) => {
 		setSaveError( null );
-		const payload = { title: title || __( 'Untitled Gallery', 'ninja-gallery' ), ...settings, status };
+		const payload = { title: title || __( 'Untitled Gallery', 'pninja-media-gallery' ), ...settings, status };
 
 		if ( isNew ) {
 			const res = await createGallery( payload );
 			if ( 'error' in res || ! res.data?.data?.id ) {
 				const msg = ( res as any )?.error?.data?.message
 					?? ( res as any )?.error?.error
-					?? __( 'Failed to save gallery. Please try again.', 'ninja-gallery' );
+					?? __( 'Failed to save gallery. Please try again.', 'pninja-media-gallery' );
 				setSaveError( msg );
 				return;
 			}
@@ -388,7 +388,7 @@ const GalleryEditPage = () => {
 			if ( 'error' in res ) {
 				const msg = ( res as any )?.error?.data?.message
 					?? ( res as any )?.error?.error
-					?? __( 'Failed to update gallery. Please try again.', 'ninja-gallery' );
+					?? __( 'Failed to update gallery. Please try again.', 'pninja-media-gallery' );
 				setSaveError( msg );
 				return;
 			}
@@ -416,13 +416,13 @@ const GalleryEditPage = () => {
 			<InlineStack align="between" blockAlign="center" wrap={ true } gap={ 10 }>
 				<InlineStack gap={ 6 } blockAlign="center">
 					<Button variant="link" size="small" startIcon="arrow_back" onClick={ () => navigate( '/' ) }>
-						{ __( 'Galleries', 'ninja-gallery' ) }
+						{ __( 'Galleries', 'pninja-media-gallery' ) }
 					</Button>
 					<Text color="gray-300">{ '/' }</Text>
 					<Text size="sm" color="gray-700" weight="medium">
 						{ isNew
-							? __( 'New Gallery', 'ninja-gallery' )
-							: ( existing?.title || __( 'Edit Gallery', 'ninja-gallery' ) ) }
+							? __( 'New Gallery', 'pninja-media-gallery' )
+							: ( existing?.title || __( 'Edit Gallery', 'pninja-media-gallery' ) ) }
 					</Text>
 				</InlineStack>
 				<InlineStack gap={ 8 } blockAlign="center">
@@ -433,7 +433,7 @@ const GalleryEditPage = () => {
 							startIcon={ copied ? 'check' : 'content_copy' }
 							onClick={ copyShortcode }
 						>
-							{ copied ? __( 'Copied!', 'ninja-gallery' ) : __( 'Copy Shortcode', 'ninja-gallery' ) }
+							{ copied ? __( 'Copied!', 'pninja-media-gallery' ) : __( 'Copy Shortcode', 'pninja-media-gallery' ) }
 						</Button>
 					) }
 					<Button
@@ -444,7 +444,7 @@ const GalleryEditPage = () => {
 						loading={ isSaving }
 						onClick={ () => saveGallery( 'draft' ) }
 					>
-						{ __( 'Save Draft', 'ninja-gallery' ) }
+						{ __( 'Save Draft', 'pninja-media-gallery' ) }
 					</Button>
 					<Button
 						variant="primary"
@@ -454,7 +454,7 @@ const GalleryEditPage = () => {
 						loading={ isSaving }
 						onClick={ () => saveGallery( 'publish' ) }
 					>
-						{ __( 'Publish', 'ninja-gallery' ) }
+						{ __( 'Publish', 'pninja-media-gallery' ) }
 					</Button>
 				</InlineStack>
 			</InlineStack>
@@ -472,7 +472,7 @@ const GalleryEditPage = () => {
 						variant="error"
 						fontSize="xs"
 						border={ false }
-						ariaLabel={ __( 'Dismiss error', 'ninja-gallery' ) }
+						ariaLabel={ __( 'Dismiss error', 'pninja-media-gallery' ) }
 						onClick={ () => setSaveError( null ) }
 					/>
 				</InlineStack>
@@ -488,7 +488,7 @@ const GalleryEditPage = () => {
 						<div className="pnpng-gallery-edit__title-bar">
 							<Input
 								value={ title }
-								placeholder={ __( 'Gallery title…', 'ninja-gallery' ) }
+								placeholder={ __( 'Gallery title…', 'pninja-media-gallery' ) }
 								color="primary-light"
 								onChange={ ( value: string | number ) => setTitle( String( value ) ) }
 							/>
@@ -502,14 +502,14 @@ const GalleryEditPage = () => {
 								weight="medium"
 								className="pnpng-gallery-edit__preview-label"
 							>
-								{ __( 'Live Preview', 'ninja-gallery' ) }
+								{ __( 'Live Preview', 'pninja-media-gallery' ) }
 							</Text>
 
 							{ previewImages.length === 0 ? (
 								<BlockStack padding="40px 0">
 									<EmptyState
 										icon={ <Icon name="photo_library" color="gray-300" fontSize="3xl" /> }
-										description={ __( 'Add images to see a live preview', 'ninja-gallery' ) }
+										description={ __( 'Add images to see a live preview', 'pninja-media-gallery' ) }
 									/>
 								</BlockStack>
 							) : (
@@ -556,12 +556,12 @@ const GalleryEditPage = () => {
 									<BlockStack gap={ 16 }>
 										<BlockStack gap={ 8 }>
 											<Text size="sm" weight="medium" color="gray-700">
-												{ __( 'Layout Type', 'ninja-gallery' ) }
+												{ __( 'Layout Type', 'pninja-media-gallery' ) }
 											</Text>
 											<LayoutPicker value={ settings.layout ?? 'grid' } onChange={ ( v ) => set( 'layout', v ) } />
 										</BlockStack>
 										<Slider
-											label={ __( 'Columns', 'ninja-gallery' ) }
+											label={ __( 'Columns', 'pninja-media-gallery' ) }
 											value={ settings.columns ?? 3 }
 											min={ 1 }
 											max={ 6 }
@@ -574,29 +574,29 @@ const GalleryEditPage = () => {
 
 							{ activeTab === 'style' && (
 								<SettingsField compact>
-									<Slider label={ __( 'Gap', 'ninja-gallery' ) }           value={ settings.gap ?? 8 }           min={ 0 } max={ 60 } onChange={ ( v ) => set( 'gap', v ) } />
+									<Slider label={ __( 'Gap', 'pninja-media-gallery' ) }           value={ settings.gap ?? 8 }           min={ 0 } max={ 60 } onChange={ ( v ) => set( 'gap', v ) } />
 									<Divider color="gray-100" />
-									<Slider label={ __( 'Border Radius', 'ninja-gallery' ) } value={ settings.border_radius ?? 8 } min={ 0 } max={ 50 } onChange={ ( v ) => set( 'border_radius', v ) } />
+									<Slider label={ __( 'Border Radius', 'pninja-media-gallery' ) } value={ settings.border_radius ?? 8 } min={ 0 } max={ 50 } onChange={ ( v ) => set( 'border_radius', v ) } />
 									<Divider color="gray-100" />
-									<SelectRow label={ __( 'Shadow', 'ninja-gallery' ) }        value={ settings.shadow ?? 'small' }           options={ [ { value: 'none', label: __( 'None', 'ninja-gallery' ) }, { value: 'small', label: __( 'Small', 'ninja-gallery' ) }, { value: 'medium', label: __( 'Medium', 'ninja-gallery' ) }, { value: 'large', label: __( 'Large', 'ninja-gallery' ) } ] } onChange={ ( v ) => set( 'shadow', v ) } />
+									<SelectRow label={ __( 'Shadow', 'pninja-media-gallery' ) }        value={ settings.shadow ?? 'small' }           options={ [ { value: 'none', label: __( 'None', 'pninja-media-gallery' ) }, { value: 'small', label: __( 'Small', 'pninja-media-gallery' ) }, { value: 'medium', label: __( 'Medium', 'pninja-media-gallery' ) }, { value: 'large', label: __( 'Large', 'pninja-media-gallery' ) } ] } onChange={ ( v ) => set( 'shadow', v ) } />
 									<Divider color="gray-100" />
-									<SelectRow label={ __( 'Hover Effect', 'ninja-gallery' ) }  value={ settings.hover_effect ?? 'zoom' }       options={ [ { value: 'none', label: __( 'None', 'ninja-gallery' ) }, { value: 'zoom', label: __( 'Zoom', 'ninja-gallery' ) }, { value: 'fade', label: __( 'Fade', 'ninja-gallery' ) }, { value: 'slide', label: __( 'Slide', 'ninja-gallery' ) } ] } onChange={ ( v ) => set( 'hover_effect', v ) } />
+									<SelectRow label={ __( 'Hover Effect', 'pninja-media-gallery' ) }  value={ settings.hover_effect ?? 'zoom' }       options={ [ { value: 'none', label: __( 'None', 'pninja-media-gallery' ) }, { value: 'zoom', label: __( 'Zoom', 'pninja-media-gallery' ) }, { value: 'fade', label: __( 'Fade', 'pninja-media-gallery' ) }, { value: 'slide', label: __( 'Slide', 'pninja-media-gallery' ) } ] } onChange={ ( v ) => set( 'hover_effect', v ) } />
 									<Divider color="gray-100" />
-									<SelectRow label={ __( 'Overlay Style', 'ninja-gallery' ) } value={ settings.overlay_style ?? 'dark-gradient' } options={ [ { value: 'none', label: __( 'None', 'ninja-gallery' ) }, { value: 'dark', label: __( 'Dark', 'ninja-gallery' ) }, { value: 'dark-gradient', label: __( 'Dark Gradient', 'ninja-gallery' ) }, { value: 'light', label: __( 'Light', 'ninja-gallery' ) } ] } onChange={ ( v ) => set( 'overlay_style', v ) } />
+									<SelectRow label={ __( 'Overlay Style', 'pninja-media-gallery' ) } value={ settings.overlay_style ?? 'dark-gradient' } options={ [ { value: 'none', label: __( 'None', 'pninja-media-gallery' ) }, { value: 'dark', label: __( 'Dark', 'pninja-media-gallery' ) }, { value: 'dark-gradient', label: __( 'Dark Gradient', 'pninja-media-gallery' ) }, { value: 'light', label: __( 'Light', 'pninja-media-gallery' ) } ] } onChange={ ( v ) => set( 'overlay_style', v ) } />
 								</SettingsField>
 							) }
 
 							{ activeTab === 'lightbox' && (
 								<SettingsField compact>
-									<ToggleRow label={ __( 'Enable Lightbox', 'ninja-gallery' ) } sub={ __( 'Click images to open fullscreen', 'ninja-gallery' ) } checked={ Boolean( settings.lightbox ) } onChange={ ( v ) => set( 'lightbox', v ) } />
+									<ToggleRow label={ __( 'Enable Lightbox', 'pninja-media-gallery' ) } sub={ __( 'Click images to open fullscreen', 'pninja-media-gallery' ) } checked={ Boolean( settings.lightbox ) } onChange={ ( v ) => set( 'lightbox', v ) } />
 									{ Boolean( settings.lightbox ) && (
 										<>
 											<Divider color="gray-100" />
-											<SelectRow label={ __( 'Transition', 'ninja-gallery' ) }      value={ settings.lightbox_transition ?? 'fade' } options={ [ { value: 'fade', label: __( 'Fade', 'ninja-gallery' ) }, { value: 'slide', label: __( 'Slide', 'ninja-gallery' ) }, { value: 'zoom', label: __( 'Zoom', 'ninja-gallery' ) } ] } onChange={ ( v ) => set( 'lightbox_transition', v ) } />
+											<SelectRow label={ __( 'Transition', 'pninja-media-gallery' ) }      value={ settings.lightbox_transition ?? 'fade' } options={ [ { value: 'fade', label: __( 'Fade', 'pninja-media-gallery' ) }, { value: 'slide', label: __( 'Slide', 'pninja-media-gallery' ) }, { value: 'zoom', label: __( 'Zoom', 'pninja-media-gallery' ) } ] } onChange={ ( v ) => set( 'lightbox_transition', v ) } />
 											<Divider color="gray-100" />
-											<ToggleRow label={ __( 'Show Captions', 'ninja-gallery' ) }       sub={ __( 'Display image captions in lightbox', 'ninja-gallery' ) }     checked={ Boolean( settings.lightbox_captions ) } onChange={ ( v ) => set( 'lightbox_captions', v ) } />
+											<ToggleRow label={ __( 'Show Captions', 'pninja-media-gallery' ) }       sub={ __( 'Display image captions in lightbox', 'pninja-media-gallery' ) }     checked={ Boolean( settings.lightbox_captions ) } onChange={ ( v ) => set( 'lightbox_captions', v ) } />
 											<Divider color="gray-100" />
-											<ToggleRow label={ __( 'Navigation Controls', 'ninja-gallery' ) } sub={ __( 'Prev/next arrows and keyboard nav', 'ninja-gallery' ) } checked={ Boolean( settings.lightbox_nav ) }      onChange={ ( v ) => set( 'lightbox_nav', v ) } />
+											<ToggleRow label={ __( 'Navigation Controls', 'pninja-media-gallery' ) } sub={ __( 'Prev/next arrows and keyboard nav', 'pninja-media-gallery' ) } checked={ Boolean( settings.lightbox_nav ) }      onChange={ ( v ) => set( 'lightbox_nav', v ) } />
 										</>
 									) }
 								</SettingsField>
@@ -604,18 +604,18 @@ const GalleryEditPage = () => {
 
 							{ activeTab === 'advanced' && (
 								<SettingsField compact>
-									<ToggleRow label={ __( 'Lazy Loading', 'ninja-gallery' ) } sub={ __( 'Load images as they scroll into view', 'ninja-gallery' ) } checked={ Boolean( settings.lazy_loading ) } onChange={ ( v ) => set( 'lazy_loading', v ) } />
+									<ToggleRow label={ __( 'Lazy Loading', 'pninja-media-gallery' ) } sub={ __( 'Load images as they scroll into view', 'pninja-media-gallery' ) } checked={ Boolean( settings.lazy_loading ) } onChange={ ( v ) => set( 'lazy_loading', v ) } />
 									<Divider color="gray-100" />
-									<SelectRow label={ __( 'Image Quality', 'ninja-gallery' ) } value={ settings.image_quality ?? 'high' } options={ [ { value: 'low', label: __( 'Low', 'ninja-gallery' ) }, { value: 'medium', label: __( 'Medium', 'ninja-gallery' ) }, { value: 'high', label: __( 'High Quality', 'ninja-gallery' ) }, { value: 'original', label: __( 'Original', 'ninja-gallery' ) } ] } onChange={ ( v ) => set( 'image_quality', v ) } />
+									<SelectRow label={ __( 'Image Quality', 'pninja-media-gallery' ) } value={ settings.image_quality ?? 'high' } options={ [ { value: 'low', label: __( 'Low', 'pninja-media-gallery' ) }, { value: 'medium', label: __( 'Medium', 'pninja-media-gallery' ) }, { value: 'high', label: __( 'High Quality', 'pninja-media-gallery' ) }, { value: 'original', label: __( 'Original', 'pninja-media-gallery' ) } ] } onChange={ ( v ) => set( 'image_quality', v ) } />
 									<Divider color="gray-100" />
-									<Slider label={ __( 'Tablet Columns', 'ninja-gallery' ) } value={ settings.tablet_columns ?? 2 } min={ 1 } max={ 4 } unit="" onChange={ ( v ) => set( 'tablet_columns', v ) } />
+									<Slider label={ __( 'Tablet Columns', 'pninja-media-gallery' ) } value={ settings.tablet_columns ?? 2 } min={ 1 } max={ 4 } unit="" onChange={ ( v ) => set( 'tablet_columns', v ) } />
 									<Divider color="gray-100" />
-									<Slider label={ __( 'Mobile Columns', 'ninja-gallery' ) } value={ settings.mobile_columns ?? 1 } min={ 1 } max={ 3 } unit="" onChange={ ( v ) => set( 'mobile_columns', v ) } />
+									<Slider label={ __( 'Mobile Columns', 'pninja-media-gallery' ) } value={ settings.mobile_columns ?? 1 } min={ 1 } max={ 3 } unit="" onChange={ ( v ) => set( 'mobile_columns', v ) } />
 									<Divider color="gray-100" />
 									<BlockStack gap={ 6 } padding="10px 0">
-										<Text size="sm" color="gray-700">{ __( 'Custom CSS Class', 'ninja-gallery' ) }</Text>
+										<Text size="sm" color="gray-700">{ __( 'Custom CSS Class', 'pninja-media-gallery' ) }</Text>
 										<Input value={ settings.css_class ?? '' } placeholder="e.g. my-gallery-class" color="primary-light" onChange={ ( value: string | number ) => set( 'css_class', String( value ) ) } />
-										<Text size="xs" color="gray-400">{ __( 'Added to the gallery wrapper element', 'ninja-gallery' ) }</Text>
+										<Text size="xs" color="gray-400">{ __( 'Added to the gallery wrapper element', 'pninja-media-gallery' ) }</Text>
 									</BlockStack>
 								</SettingsField>
 							) }

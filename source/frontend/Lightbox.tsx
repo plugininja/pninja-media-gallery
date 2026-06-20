@@ -68,14 +68,14 @@ export default function Lightbox( {
 			className="pnpng-lightbox"
 			role="dialog"
 			aria-modal="true"
-			aria-label={ __( 'Image lightbox', 'ninja-gallery' ) }
+			aria-label={ __( 'Image lightbox', 'pninja-media-gallery' ) }
 			onClick={ onClose }
 		>
 			{ /* Close button */ }
 			<button
 				className="pnpng-lightbox__close"
 				onClick={ onClose }
-				aria-label={ __( 'Close lightbox', 'ninja-gallery' ) }
+				aria-label={ __( 'Close lightbox', 'pninja-media-gallery' ) }
 				type="button"
 			>
 				✕
@@ -91,7 +91,7 @@ export default function Lightbox( {
 				<button
 					className="pnpng-lightbox__arrow pnpng-lightbox__arrow--prev"
 					onClick={ ( e ) => { e.stopPropagation(); prev(); } }
-					aria-label={ __( 'Previous image', 'ninja-gallery' ) }
+					aria-label={ __( 'Previous image', 'pninja-media-gallery' ) }
 					type="button"
 				>
 					&#8249;
@@ -119,7 +119,7 @@ export default function Lightbox( {
 				<button
 					className="pnpng-lightbox__arrow pnpng-lightbox__arrow--next"
 					onClick={ ( e ) => { e.stopPropagation(); next(); } }
-					aria-label={ __( 'Next image', 'ninja-gallery' ) }
+					aria-label={ __( 'Next image', 'pninja-media-gallery' ) }
 					type="button"
 				>
 					&#8250;
@@ -136,7 +136,7 @@ export default function Lightbox( {
 							className={ `pnpng-lightbox__thumb${ i === current ? ' pnpng-lightbox__thumb--active' : '' }` }
 							onClick={ () => goTo( i ) }
 							/* translators: %d: image number */
-							aria-label={ sprintf( __( 'Go to image %d', 'ninja-gallery' ), i + 1 ) }
+							aria-label={ sprintf( __( 'Go to image %d', 'pninja-media-gallery' ), i + 1 ) }
 						>
 							<img src={ im.src } alt={ im.alt } />
 						</button>
