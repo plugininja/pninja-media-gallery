@@ -1,10 +1,10 @@
 <?php
 
-namespace Pnpnd\NG\API;
+namespace Pninja\API;
 
 use WP_REST_Request;
-use Pnpnd\NG\Models\ImageModel;
-use Pnpnd\NG\Models\GalleryModel;
+use Pninja\Models\ImageModel;
+use Pninja\Models\GalleryModel;
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
@@ -83,7 +83,7 @@ class ImageController extends BaseController {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			$gallery = ( new GalleryModel() )->find( $gallery_id );
 			if ( ! $gallery || 'publish' !== $gallery->status ) {
-				return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+				return $this->errorResponse( 'pninja_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 			}
 		}
 
@@ -108,7 +108,7 @@ class ImageController extends BaseController {
 		}
 
 		if ( ! $src ) {
-			return $this->errorResponse( 'pnpng_invalid_image', __( 'Image source is required.', 'pninja-media-gallery' ) );
+			return $this->errorResponse( 'pninja_invalid_image', __( 'Image source is required.', 'pninja-media-gallery' ) );
 		}
 
 		$model = new ImageModel();
@@ -124,7 +124,7 @@ class ImageController extends BaseController {
 			return $this->errorResponse( $id->get_error_code(), $id->get_error_message() );
 		}
 
-		do_action( 'pnpng_image_added', $id, $gallery_id );
+		do_action( 'pninja_image_added', $id, $gallery_id );
 
 		return $this->successResponse( $model->find( $id ), 201 );
 	}
@@ -139,12 +139,12 @@ class ImageController extends BaseController {
 		$image      = $model->find( $id );
 
 		if ( ! $image ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		// Prevent cross-gallery manipulation: image must belong to the gallery in the URL.
 		if ( (int) $image->gallery_id !== $gallery_id ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->update( $id, array(
@@ -166,16 +166,16 @@ class ImageController extends BaseController {
 		$image      = $model->find( $id );
 
 		if ( ! $image ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		// Prevent cross-gallery manipulation: image must belong to the gallery in the URL.
 		if ( (int) $image->gallery_id !== $gallery_id ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Image not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->delete( $id );
-		do_action( 'pnpng_image_removed', $id );
+		do_action( 'pninja_image_removed', $id );
 
 		return $this->successResponse( array( 'deleted' => true, 'id' => $id ) );
 	}
@@ -191,7 +191,7 @@ class ImageController extends BaseController {
 		$order      = $request->get_param( 'order' ); // [ { id, sort_order } ]
 
 		if ( ! is_array( $order ) ) {
-			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid order data.', 'pninja-media-gallery' ) );
+			return $this->errorResponse( 'pninja_invalid_data', __( 'Invalid order data.', 'pninja-media-gallery' ) );
 		}
 
 		$model      = new ImageModel();
@@ -208,7 +208,7 @@ class ImageController extends BaseController {
 			// Reject the batch if any image doesn't exist or belongs to a different gallery.
 			if ( ! $image || (int) $image->gallery_id !== $gallery_id ) {
 				return $this->errorResponse(
-					'pnpng_forbidden',
+					'pninja_forbidden',
 					__( 'One or more images do not belong to this gallery.', 'pninja-media-gallery' ),
 					403
 				);

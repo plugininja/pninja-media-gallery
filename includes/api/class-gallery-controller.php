@@ -1,9 +1,9 @@
 <?php
 
-namespace Pnpnd\NG\API;
+namespace Pninja\API;
 
 use WP_REST_Request;
-use Pnpnd\NG\Models\GalleryModel;
+use Pninja\Models\GalleryModel;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 /**
@@ -123,12 +123,12 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		// Non-editors must not see unpublished galleries.
 		if ( 'publish' !== $gallery->status && ! current_user_can( 'edit_posts' ) ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		return $this->successResponse( $gallery );
@@ -150,7 +150,7 @@ class GalleryController extends BaseController {
 		}
 
 		$gallery = $model->find( $id );
-		do_action( 'pnpng_gallery_created', $id, $data );
+		do_action( 'pninja_gallery_created', $id, $data );
 
 		return $this->successResponse( $gallery, 201 );
 	}
@@ -167,7 +167,7 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$data   = $this->extract_item_data( $request );
@@ -177,7 +177,7 @@ class GalleryController extends BaseController {
 			return $this->errorResponse( $result->get_error_code(), $result->get_error_message() );
 		}
 
-		do_action( 'pnpng_gallery_updated', $id, $data );
+		do_action( 'pninja_gallery_updated', $id, $data );
 
 		return $this->successResponse( $model->find( $id ) );
 	}
@@ -194,11 +194,11 @@ class GalleryController extends BaseController {
 		$gallery = $model->find( $id );
 
 		if ( ! $gallery ) {
-			return $this->errorResponse( 'pnpng_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
+			return $this->errorResponse( 'pninja_not_found', __( 'Gallery not found.', 'pninja-media-gallery' ), 404 );
 		}
 
 		$model->delete( $id );
-		do_action( 'pnpng_gallery_deleted', $id );
+		do_action( 'pninja_gallery_deleted', $id );
 
 		return $this->successResponse( array( 'deleted' => true, 'id' => $id ) );
 	}

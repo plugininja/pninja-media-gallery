@@ -28,8 +28,8 @@ galleries in seconds and embed them anywhere with a simple shortcode.
 = Shortcode =
 
 ```
-[pninja_media_gallery id="1"]
-[pninja_media_gallery id="1" layout="masonry" columns="4" lightbox="true"]
+[pninja_gallery id="1"]
+[pninja_gallery id="1" layout="masonry" columns="4" lightbox="true"]
 ```
 
 = Shortcode Parameters =
@@ -51,7 +51,7 @@ galleries in seconds and embed them anywhere with a simple shortcode.
 = How do I embed a gallery in a post? =
 
 Create a gallery in **Pninja Media Gallery → Add New**, note the gallery ID, then add
-`[pninja_media_gallery id="YOUR_ID"]` to any post, page, or widget.
+`[pninja_gallery id="YOUR_ID"]` to any post, page, or widget.
 
 = Can I use the Media Library to add images? =
 

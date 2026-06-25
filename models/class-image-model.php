@@ -1,14 +1,14 @@
 <?php
-namespace Pnpnd\NG\Models;
+namespace Pninja\Models;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
- * Model for the pnpng_images table.
+ * Model for the pninja_images table.
  */
 class ImageModel extends BaseModel {
 
-	protected $table_name = 'pnpng_images';
+	protected $table_name = 'pninja_images';
 
 	/**
 	 * Return all images for a gallery, ordered by sort_order.

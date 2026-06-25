@@ -1,14 +1,14 @@
 <?php
-namespace Pnpnd\NG\Models;
+namespace Pninja\Models;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
- * Model for the pnpng_galleries table.
+ * Model for the pninja_galleries table.
  */
 class GalleryModel extends BaseModel {
 
-	protected $table_name = 'pnpng_galleries';
+	protected $table_name = 'pninja_galleries';
 
 	/**
 	 * Find gallery by slug.
@@ -64,7 +64,7 @@ class GalleryModel extends BaseModel {
 		$per_page = max( 1, absint( $per_page ) );
 		$page     = max( 1, absint( $page ) );
 		$offset   = ( $page - 1 ) * $per_page;
-		$images   = $this->db->prefix . 'pnpng_images';
+		$images   = $this->db->prefix . 'pninja_images';
 
 		$sql = $this->db->prepare(
 			"SELECT g.*,

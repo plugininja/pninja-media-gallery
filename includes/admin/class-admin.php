@@ -1,8 +1,8 @@
 <?php
 
-namespace Pnpnd\NG\Admin;
+namespace Pninja\Admin;
 
-use Pnpnd\NG\Traits\Singleton;
+use Pninja\Traits\Singleton;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -36,36 +36,36 @@ class Admin {
 			__( 'Pninja Media Gallery', 'pninja-media-gallery' ),
 			__( 'Pninja Media Gallery', 'pninja-media-gallery' ),
 			'edit_posts',
-			'pnpng-admin',
+			'pninja-admin',
 			array( $this, 'render_page' ),
 			'dashicons-format-gallery',
 			58
 		);
 
 		add_submenu_page(
-			'pnpng-admin',
+			'pninja-admin',
 			__( 'All Galleries', 'pninja-media-gallery' ),
 			__( 'All Galleries', 'pninja-media-gallery' ),
 			'edit_posts',
-			'pnpng-admin',
+			'pninja-admin',
 			array( $this, 'render_page' )
 		);
 
 		add_submenu_page(
-			'pnpng-admin',
+			'pninja-admin',
 			__( 'Add New Gallery', 'pninja-media-gallery' ),
 			__( 'Add New', 'pninja-media-gallery' ),
 			'edit_posts',
-			'pnpng-admin',
+			'pninja-admin',
 			array( $this, 'render_page' )
 		);
 
 		add_submenu_page(
-			'pnpng-admin',
+			'pninja-admin',
 			__( 'Settings', 'pninja-media-gallery' ),
 			__( 'Settings', 'pninja-media-gallery' ),
 			'manage_options',
-			'pnpng-admin',
+			'pninja-admin',
 			array( $this, 'render_page' )
 		);
 	}
@@ -79,7 +79,7 @@ class Admin {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			wp_die( esc_html__( 'You do not have permission to access this page.', 'pninja-media-gallery' ) );
 		}
-		echo '<div id="' . esc_attr( 'pnpng-admin' ) . '" class="' . esc_attr( 'pnpng-admin-root' ) . '"></div>';
+		echo '<div id="' . esc_attr( 'pninja-admin' ) . '" class="' . esc_attr( 'pninja-admin-root' ) . '"></div>';
 	}
 
 }

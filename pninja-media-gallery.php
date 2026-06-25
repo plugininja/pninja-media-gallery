@@ -21,12 +21,12 @@ defined('ABSPATH') || exit('No direct script access allowed');
 require_once __DIR__ . '/core/config.php';
 
 // Register lifecycle hooks before autoloader so classes exist at activation time.
-require_once PNPNG_DIR . 'includes/class-autoloader.php';
-Pnpnd\NG\Autoloader::register();
+require_once PNINJA_DIR . 'includes/class-autoloader.php';
+Pninja\Autoloader::register();
 
-use Pnpnd\NG\Lifecycle\Activation;
-use Pnpnd\NG\Lifecycle\Deactivation;
-use Pnpnd\NG\Plugin;
+use Pninja\Lifecycle\Activation;
+use Pninja\Lifecycle\Deactivation;
+use Pninja\Plugin;
 
 register_activation_hook(__FILE__, array( Activation::class, 'init' ));
 register_deactivation_hook(__FILE__, array( Deactivation::class, 'init' ));

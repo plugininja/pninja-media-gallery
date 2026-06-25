@@ -75,7 +75,7 @@ function Figure( { img, settings, onClick, extraStyle }: FigureProps ) {
 
 	return (
 		<figure
-			className={ `pnpng-figure pnpng-hover--${ settings.hover_effect }` }
+			className={ `pninja-figure pninja-hover--${ settings.hover_effect }` }
 			style={ style }
 			onClick={ onClick }
 		>
@@ -86,10 +86,10 @@ function Figure( { img, settings, onClick, extraStyle }: FigureProps ) {
 				style={ { width: '100%', height: '100%', objectFit: 'cover', display: 'block' } }
 			/>
 			{ overlay && (
-				<div className={ `pnpng-overlay pnpng-overlay--${ settings.overlay_style }` } />
+				<div className={ `pninja-overlay pninja-overlay--${ settings.overlay_style }` } />
 			) }
 			{ img.caption && (
-				<figcaption className="pnpng-caption">{ img.caption }</figcaption>
+				<figcaption className="pninja-caption">{ img.caption }</figcaption>
 			) }
 		</figure>
 	);
@@ -197,7 +197,7 @@ export default function GalleryWidget( { config }: { config: GalleryConfig } ) {
 			.finally( () => setLoading( false ) );
 	}, [ galleryId ] );
 
-	if ( loading ) return <div className="pnpng-loading" aria-busy="true" />;
+	if ( loading ) return <div className="pninja-loading" aria-busy="true" />;
 	if ( fetchError || ! settings ) return null;
 	if ( ! images.length ) return null;
 
@@ -209,7 +209,7 @@ export default function GalleryWidget( { config }: { config: GalleryConfig } ) {
 		lightbox: config.lightbox ?? settings.lightbox,
 	};
 
-	const wrapClass = [ 'pnpng-gallery-widget', `pnpng-layout-${ s.layout }`, s.css_class ]
+	const wrapClass = [ 'pninja-gallery-widget', `pninja-layout-${ s.layout }`, s.css_class ]
 		.filter( Boolean ).join( ' ' );
 
 	const lp: LayoutProps = { images, s, onOpen: setLightboxIdx };

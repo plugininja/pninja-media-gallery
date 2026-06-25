@@ -1,10 +1,10 @@
 // ─── Pninja Media Gallery Frontend ───────────────────────────────────────────────────
 
 // ─── gallery wrapper ──────────────────────────────────────────────────────────
-.pnpng-gallery-widget { width: 100%; }
+.pninja-gallery-widget { width: 100%; }
 
 // ─── figure / image tile ──────────────────────────────────────────────────────
-.pnpng-figure {
+.pninja-figure {
 	margin:   0;
 	padding:  0;
 	overflow: hidden;
@@ -17,7 +17,7 @@
 		object-fit: cover;
 	}
 
-	figcaption.pnpng-caption {
+	figcaption.pninja-caption {
 		position:    absolute;
 		bottom:      0;
 		left:        0;
@@ -31,38 +31,38 @@
 		transition:  opacity .2s;
 	}
 
-	&:hover figcaption.pnpng-caption { opacity: 1; }
+	&:hover figcaption.pninja-caption { opacity: 1; }
 }
 
 // ─── hover effects ────────────────────────────────────────────────────────────
-.pnpng-hover--zoom img      { transition: transform .3s ease; }
-.pnpng-hover--zoom:hover img { transform: scale(1.06); }
+.pninja-hover--zoom img      { transition: transform .3s ease; }
+.pninja-hover--zoom:hover img { transform: scale(1.06); }
 
-.pnpng-hover--fade img      { transition: opacity .3s ease; }
-.pnpng-hover--fade:hover img { opacity: .8; }
+.pninja-hover--fade img      { transition: opacity .3s ease; }
+.pninja-hover--fade:hover img { opacity: .8; }
 
-.pnpng-hover--slide img     { transition: transform .35s ease; }
-.pnpng-hover--slide:hover img { transform: translateY(-4px); }
+.pninja-hover--slide img     { transition: transform .35s ease; }
+.pninja-hover--slide:hover img { transform: translateY(-4px); }
 
-.pnpng-hover--none img { transition: none; }
+.pninja-hover--none img { transition: none; }
 
 // ─── overlay styles ───────────────────────────────────────────────────────────
-.pnpng-overlay {
+.pninja-overlay {
 	position:   absolute;
 	inset:      0;
 	pointer-events: none;
 	opacity:    0;
 	transition: opacity .25s;
 }
-.pnpng-figure:hover .pnpng-overlay { opacity: 1; }
+.pninja-figure:hover .pninja-overlay { opacity: 1; }
 
-.pnpng-overlay--dark          { background: rgba(0,0,0,.4); }
-.pnpng-overlay--dark-gradient { background: linear-gradient( to top, rgba(0,0,0,.55) 0%, transparent 60% ); opacity: 1; }
-.pnpng-overlay--light         { background: rgba(255,255,255,.3); }
-.pnpng-overlay--color         { background: rgba(37,99,235,.35); }
+.pninja-overlay--dark          { background: rgba(0,0,0,.4); }
+.pninja-overlay--dark-gradient { background: linear-gradient( to top, rgba(0,0,0,.55) 0%, transparent 60% ); opacity: 1; }
+.pninja-overlay--light         { background: rgba(255,255,255,.3); }
+.pninja-overlay--color         { background: rgba(37,99,235,.35); }
 
 // ─── loading spinner ──────────────────────────────────────────────────────────
-.pnpng-loading {
+.pninja-loading {
 	height:          80px;
 	display:         flex;
 	align-items:     center;
@@ -75,14 +75,14 @@
 		border:        3px solid #e2e8f0;
 		border-top-color: #2563eb;
 		border-radius: 50%;
-		animation:     pnpng-spin .7s linear infinite;
+		animation:     pninja-spin .7s linear infinite;
 	}
 }
 
-@keyframes pnpng-spin { to { transform: rotate(360deg); } }
+@keyframes pninja-spin { to { transform: rotate(360deg); } }
 
 // ─── lightbox ─────────────────────────────────────────────────────────────────
-.pnpng-lightbox {
+.pninja-lightbox {
 	position:        fixed;
 	inset:           0;
 	z-index:         999999;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pnpnd\NG\Lifecycle;
+namespace Pninja\Lifecycle;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -16,12 +16,12 @@ class Deactivation {
 	 */
 	public static function init() {
 		// Clear scheduled cron events.
-		$timestamp = wp_next_scheduled( 'pnpng_daily_cleanup' );
+		$timestamp = wp_next_scheduled( 'pninja_daily_cleanup' );
 		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'pnpng_daily_cleanup' );
+			wp_unschedule_event( $timestamp, 'pninja_daily_cleanup' );
 		}
 
 		flush_rewrite_rules();
-		do_action( 'pnpng_deactivated' );
+		do_action( 'pninja_deactivated' );
 	}
 }

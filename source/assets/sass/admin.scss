@@ -3,5 +3,5 @@
 // are loaded via common.scss imported in admin.js.
 // This file loads admin-specific structural and gallery styles only.
 
-@use './admin/main-layout';
-@use './admin/gallery-admin';
+@use "./admin/main-layout";
+@use "./admin/gallery-admin";

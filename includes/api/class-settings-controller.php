@@ -1,6 +1,6 @@
 <?php
 
-namespace Pnpnd\NG\API;
+namespace Pninja\API;
 
 use WP_REST_Request;
 
@@ -42,7 +42,7 @@ class SettingsController extends BaseController {
 	 * Return current settings.
 	 */
 	public function get_settings( WP_REST_Request $request ) {
-		return $this->successResponse( get_option( 'pnpng_settings', array() ) );
+		return $this->successResponse( get_option( 'pninja_settings', array() ) );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class SettingsController extends BaseController {
 	public function save_settings( WP_REST_Request $request ) {
 		$body = $request->get_json_params();
 		if ( ! is_array( $body ) ) {
-			return $this->errorResponse( 'pnpng_invalid_data', __( 'Invalid settings data.', 'pninja-media-gallery' ) );
+			return $this->errorResponse( 'pninja_invalid_data', __( 'Invalid settings data.', 'pninja-media-gallery' ) );
 		}
 
 		/**
@@ -70,7 +70,7 @@ class SettingsController extends BaseController {
 			'focus_indicators'     => 'rest_sanitize_boolean',
 			'reduced_motion'       => 'rest_sanitize_boolean',
 		);
-		$existing     = get_option( 'pnpng_settings', array() );
+		$existing     = get_option( 'pninja_settings', array() );
 
 		foreach ( $allowed_keys as $key => $sanitize_cb ) {
 			if ( array_key_exists( $key, $body ) ) {
@@ -78,8 +78,8 @@ class SettingsController extends BaseController {
 			}
 		}
 
-		update_option( 'pnpng_settings', $existing );
-		do_action( 'pnpng_settings_saved', $existing );
+		update_option( 'pninja_settings', $existing );
+		do_action( 'pninja_settings_saved', $existing );
 
 		return $this->successResponse( $existing );
 	}

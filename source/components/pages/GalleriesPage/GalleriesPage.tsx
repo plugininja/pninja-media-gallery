@@ -59,7 +59,7 @@ const GalleryCard = ({ gallery }: { gallery: Gallery }) => {
     const [copied, setCopied] = useState(false);
 
     const count = gallery.image_count ?? 0;
-    const shortcode = `[pninja_media_gallery id="${gallery.id}"]`;
+    const shortcode = `[pninja_gallery id="${gallery.id}"]`;
 
     const copyShortcode = () => {
         navigator.clipboard?.writeText(shortcode);

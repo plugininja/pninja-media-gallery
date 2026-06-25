@@ -14,7 +14,7 @@ const Slider = ( { label, value, min, max, unit = 'px', onChange }: SliderProps 
 			min={ min }
 			max={ max }
 			value={ value }
-			className="pnpng-slider"
+			className="pninja-slider"
 			onChange={ ( e: React.ChangeEvent<HTMLInputElement> ) => onChange( Number( e.target.value ) ) }
 		/>
 	</BlockStack>

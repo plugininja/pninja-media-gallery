@@ -1,14 +1,14 @@
 <?php
 
-namespace Pnpnd\NG;
+namespace Pninja;
 
 defined('ABSPATH') || exit('No direct script access allowed');
 
-use Pnpnd\NG\Admin\Admin;
-use Pnpnd\NG\API\ApiRegistry;
-use Pnpnd\NG\Gutenberg\Blocks;
-use Pnpnd\NG\Lifecycle\Activation;
-use Pnpnd\NG\Traits\Singleton;
+use Pninja\Admin\Admin;
+use Pninja\API\ApiRegistry;
+use Pninja\Gutenberg\Blocks;
+use Pninja\Lifecycle\Activation;
+use Pninja\Traits\Singleton;
 
 /**
  * Central orchestrator — boots all subsystems.
@@ -27,7 +27,7 @@ class Plugin
         $this->load_helpers();
         Activation::maybe_upgrade(); // migrate schema if db version changed.
         $this->boot_subsystems();
-        do_action('pnpng_loaded');
+        do_action('pninja_loaded');
     }
 
     /**
@@ -37,7 +37,7 @@ class Plugin
      */
     private function load_helpers()
     {
-        require_once PNPNG_DIR . 'core/functions.php';
+        require_once PNINJA_DIR . 'core/functions.php';
     }
 
     /**
@@ -61,11 +61,11 @@ class Plugin
         }
 
         // Front-end shortcode.
-        add_shortcode('pninja_media_gallery', array( $this, 'render_shortcode' ));
+        add_shortcode('pninja_gallery', array( $this, 'render_shortcode' ));
     }
 
     /**
-     * Render [pninja_media_gallery id="X" layout="grid"] shortcode.
+     * Render [pninja_gallery id="X" layout="grid"] shortcode.
      *
      * @param  array  $atts    Shortcode attributes.
      * @param  string $content Inner content (unused).
@@ -81,7 +81,7 @@ class Plugin
                 'columns'  => 3,
             ),
             $atts,
-            'pninja_media_gallery'
+            'pninja_gallery'
         );
 
         $gallery_id = absint($atts['id']);
@@ -89,7 +89,7 @@ class Plugin
             return '<p>' . esc_html__('Please provide a gallery ID.', 'pninja-media-gallery') . '</p>';
         }
 
-        $layout   = in_array($atts['layout'], pnpng_supported_layouts(), true) ? $atts['layout'] : 'grid';
+        $layout   = in_array($atts['layout'], pninja_supported_layouts(), true) ? $atts['layout'] : 'grid';
         $lightbox = filter_var($atts['lightbox'], FILTER_VALIDATE_BOOLEAN);
         $columns  = max(1, min(6, absint($atts['columns'])));
 
@@ -98,7 +98,7 @@ class Plugin
             'layout'    => $layout,
             'lightbox'  => $lightbox,
             'columns'   => $columns,
-            'restUrl'   => esc_url_raw(rest_url(PNPNG_REST_NS)),
+            'restUrl'   => esc_url_raw(rest_url(PNINJA_REST_NS)),
         );
 
         // Only expose a nonce for authenticated users — avoids broadcasting
@@ -107,14 +107,14 @@ class Plugin
             $data['nonce'] = wp_create_nonce('wp_rest');
         }
 
-        $container_id = 'pnpng-gallery-' . $gallery_id;
+        $container_id = 'pninja-gallery-' . $gallery_id;
 
         $html  = '<div id="' . esc_attr($container_id) . '" ';
-        $html .= 'class="pnpng-gallery" ';
+        $html .= 'class="pninja-gallery" ';
         $html .= 'data-config="' . esc_attr(wp_json_encode($data)) . '">';
         $html .= '</div>';
 
-        do_action('pnpng_shortcode_rendered', $gallery_id, $atts);
+        do_action('pninja_shortcode_rendered', $gallery_id, $atts);
 
         return $html;
     }

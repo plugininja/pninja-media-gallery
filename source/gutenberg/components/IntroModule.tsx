@@ -20,7 +20,7 @@ const IntroModule = ( { attributes, setAttributes }: IntroModuleProps ) => {
 	};
 
 	return (
-		<div className="pnpng-block-intro-wrapper">
+		<div className="pninja-block-intro-wrapper">
 			{ id ? (
 				<Card padding={ 20 }>
 					<BlockStack gap={ 8 } align="center" inlineAlign="center">
@@ -32,7 +32,7 @@ const IntroModule = ( { attributes, setAttributes }: IntroModuleProps ) => {
 							{ __( 'Gallery ID:', 'pninja-media-gallery' ) }{ ' ' }
 							<code>{ id }</code>{ ' ' }—{ ' ' }
 							{ __( 'Shortcode:', 'pninja-media-gallery' ) }{ ' ' }
-							<code>{ `[pninja_media_gallery id="${ id }"]` }</code>
+							<code>{ `[pninja_gallery id="${ id }"]` }</code>
 						</Text>
 						<Provider store={ store }>
 							<GalleryPicker

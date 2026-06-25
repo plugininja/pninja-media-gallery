@@ -1,13 +1,13 @@
 /**
  * Pninja Media Gallery — Frontend renderer.
- * Finds all .pnpng-gallery containers and mounts the gallery widget.
+ * Finds all .pninja-gallery containers and mounts the gallery widget.
  */
 import { createRoot } from '@wordpress/element';
 import GalleryWidget  from './GalleryWidget';
 import './frontend.scss';
 
 function mountGalleries() {
-	document.querySelectorAll<HTMLElement>( '.pnpng-gallery' ).forEach( ( el ) => {
+	document.querySelectorAll<HTMLElement>( '.pninja-gallery' ).forEach( ( el ) => {
 		const config = JSON.parse( el.getAttribute( 'data-config' ) ?? '{}' );
 		createRoot( el ).render( <GalleryWidget config={ config } /> );
 	} );
@@ -20,4 +20,4 @@ if ( document.readyState === 'loading' ) {
 }
 
 // Expose for dynamic shortcode re-init (e.g. inside page builders).
-( window as any ).pnpngRenderModules = mountGalleries;
+( window as any ).pninjaRenderModules = mountGalleries;

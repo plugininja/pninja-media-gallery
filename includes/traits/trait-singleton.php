@@ -1,6 +1,6 @@
 <?php
 
-namespace Pnpnd\NG\Traits;
+namespace Pninja\Traits;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 /**

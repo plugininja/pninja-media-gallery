@@ -270,7 +270,7 @@ const mainConfig = {
         new PrependSemicolonPlugin(),
         StripHandlePlugin(),
         new AddDepsPlugin(
-            ["pnpng-shared"],
+            ["pninja-shared"],
             /blocks\/pninja-media-gallery\//,
         ),
         new CopyPlugin({

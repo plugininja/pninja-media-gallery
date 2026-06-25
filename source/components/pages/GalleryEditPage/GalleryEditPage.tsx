@@ -97,8 +97,8 @@ interface SelectRowProps {
 }
 const SelectRow = ( { label, value, options, onChange }: SelectRowProps ) => (
 	<InlineStack align="between" blockAlign="center" gap={ 16 } wrap={ false } padding="10px 0">
-		<Text size="sm" color="gray-700" className="pnpng-gallery-edit__select-label">{ label }</Text>
-		<div className="pnpng-gallery-edit__select-input">
+		<Text size="sm" color="gray-700" className="pninja-gallery-edit__select-label">{ label }</Text>
+		<div className="pninja-gallery-edit__select-input">
 			<SelectBox
 				options={ options.map( ( o ) => ( { value: o.value, name: o.label } ) ) }
 				value={ [ value ] }
@@ -124,7 +124,7 @@ const LayoutPicker = ( { value, onChange }: LayoutPickerProps ) => (
 					rounded="md"
 					border={ isActive ? 'primary' : 'secondary' }
 					background={ isActive ? 'primary-light' : 'white' }
-					className="pnpng-gallery-edit__layout-card"
+					className="pninja-gallery-edit__layout-card"
 					onClick={ () => onChange( opt.value ) }
 				>
 					<BlockStack gap={ 3 }>
@@ -182,9 +182,9 @@ interface ImageThumbGridProps {
 const ImageThumbGrid = ( { images, onRemove }: ImageThumbGridProps ) => (
 	<GridStack columns="auto-fill" min="80px" max="1fr" gap={ 8 }>
 		{ images.map( ( img ) => (
-			<div key={ img.id } className="pnpng-gallery-edit__thumb">
-				<img src={ img.src } alt={ img.alt } className="pnpng-gallery-edit__thumb-img" />
-				<div className="pnpng-gallery-edit__thumb-remove">
+			<div key={ img.id } className="pninja-gallery-edit__thumb">
+				<img src={ img.src } alt={ img.alt } className="pninja-gallery-edit__thumb-img" />
+				<div className="pninja-gallery-edit__thumb-remove">
 					<IconButton
 						name="close"
 						size="small"
@@ -328,7 +328,7 @@ const GalleryEditPage = () => {
 	const [ copied,    setCopied    ] = useState( false );
 	const [ saveError, setSaveError ] = useState<string | null>( null );
 
-	const shortcode     = isNew ? '' : `[pninja_media_gallery id="${ id }"]`;
+	const shortcode     = isNew ? '' : `[pninja_gallery id="${ id }"]`;
 	const copyShortcode = () => {
 		if ( ! shortcode ) return;
 		navigator.clipboard?.writeText( shortcode );
@@ -407,10 +407,10 @@ const GalleryEditPage = () => {
 	const isSaving = isCreating || isUpdating;
 
 	// CSS variable carries the dynamic border-radius into preview tiles.
-	const previewGridVars = { '--pnpng-radius': `${ settings.border_radius ?? 8 }px` } as React.CSSProperties;
+	const previewGridVars = { '--pninja-radius': `${ settings.border_radius ?? 8 }px` } as React.CSSProperties;
 
 	return (
-		<BlockStack gap={ 16 } className="pnpng-gallery-edit">
+		<BlockStack gap={ 16 } className="pninja-gallery-edit">
 
 			{ /* ── Breadcrumb row ──────────────────────────────────── */ }
 			<InlineStack align="between" blockAlign="center" wrap={ true } gap={ 10 }>
@@ -461,7 +461,7 @@ const GalleryEditPage = () => {
 
 			{ /* ── Save error banner */ }
 			{ saveError && (
-				<InlineStack align="between" blockAlign="center" gap={ 12 } className="pnpng-gallery-edit__error-bar">
+				<InlineStack align="between" blockAlign="center" gap={ 12 } className="pninja-gallery-edit__error-bar">
 					<InlineStack gap={ 8 } blockAlign="center">
 						<Icon name="error" color="red" fontSize="sm" />
 						<Text size="sm" color="red">{ saveError }</Text>
@@ -479,13 +479,13 @@ const GalleryEditPage = () => {
 			) }
 
 			{ /* ── Editor: two-column grid — preview left, settings right (wider) */ }
-			<GridStack className="pnpng-gallery-edit__grid">
+			<GridStack className="pninja-gallery-edit__grid">
 
 				{ /* Left — title + live preview */ }
-				<Card padding={ 0 } rounded="lg" className="pnpng-gallery-edit__panel">
+				<Card padding={ 0 } rounded="lg" className="pninja-gallery-edit__panel">
 					<BlockStack gap={ 0 }>
 						{ /* Title input */ }
-						<div className="pnpng-gallery-edit__title-bar">
+						<div className="pninja-gallery-edit__title-bar">
 							<Input
 								value={ title }
 								placeholder={ __( 'Gallery title…', 'pninja-media-gallery' ) }
@@ -500,7 +500,7 @@ const GalleryEditPage = () => {
 								size="xs"
 								color="gray-400"
 								weight="medium"
-								className="pnpng-gallery-edit__preview-label"
+								className="pninja-gallery-edit__preview-label"
 							>
 								{ __( 'Live Preview', 'pninja-media-gallery' ) }
 							</Text>
@@ -519,7 +519,7 @@ const GalleryEditPage = () => {
 									style={ previewGridVars }
 								>
 									{ previewImages.slice( 0, 12 ).map( ( img ) => (
-										<div key={ img.id } className="pnpng-gallery-edit__preview-tile">
+										<div key={ img.id } className="pninja-gallery-edit__preview-tile">
 											<img src={ img.src } alt={ img.alt } />
 										</div>
 									) ) }
@@ -530,7 +530,7 @@ const GalleryEditPage = () => {
 				</Card>
 
 				{ /* Right — settings panel */ }
-				<Card padding={ 0 } rounded="lg" className="pnpng-gallery-edit__panel">
+				<Card padding={ 0 } rounded="lg" className="pninja-gallery-edit__panel">
 					<BlockStack gap={ 16 } padding={ 14 }>
 						<Tabs tabs={ TABS } active={ activeTab } onTabClick={ setActiveTab } size="small" />
 

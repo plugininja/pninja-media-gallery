@@ -30,7 +30,7 @@ const AdminLayout = ( { children }: AdminLayoutProps ) => {
 
 	const newGalleryBtn = (
 		<Button
-			key="pnpng-new-gallery"
+			key="pninja-new-gallery"
 			variant="primary"
 			startIcon="add"
 			onClick={ () => navigate( '/gallery/new' ) }

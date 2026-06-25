@@ -1,8 +1,8 @@
 <?php
 
-namespace Pnpnd\NG;
+namespace Pninja;
 
-use Pnpnd\NG\Traits\Singleton;
+use Pninja\Traits\Singleton;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -22,7 +22,7 @@ class Enqueue {
 	}
 
 	public function admin_enqueue( string $hook ): void {
-		if ( false === strpos( $hook, 'pnpng-admin' ) ) {
+		if ( false === strpos( $hook, 'pninja-admin' ) ) {
 			return;
 		}
 
@@ -46,12 +46,12 @@ class Enqueue {
 	 * Inspects singular post content only. For other contexts — widgets, page
 	 * builders, or dynamically injected shortcodes — use the filter:
 	 *
-	 *     add_filter( 'pnpng_force_enqueue_frontend', '__return_true' );
+	 *     add_filter( 'pninja_force_enqueue_frontend', '__return_true' );
 	 *
 	 * @return bool
 	 */
 	private function page_has_gallery(): bool {
-		if ( apply_filters( 'pnpng_force_enqueue_frontend', false ) ) {
+		if ( apply_filters( 'pninja_force_enqueue_frontend', false ) ) {
 			return true;
 		}
 
@@ -64,64 +64,64 @@ class Enqueue {
 			return false;
 		}
 
-		return has_shortcode( $post->post_content, 'pninja_media_gallery' )
+		return has_shortcode( $post->post_content, 'pninja_gallery' )
 			|| has_block( 'pninja-media-gallery/gallery', $post );
 	}
 
 	private function register_common_assets(): void {
 		$this->register_script( 'runtime' );
-		$this->register_script( 'vendors', array( 'pnpng-runtime' ) );
+		$this->register_script( 'vendors', array( 'pninja-runtime' ) );
 		// 'shared' is emitted by webpack splitChunks when code is shared between
 		// the admin and frontend entries. Register it only when it exists on disk.
-		if ( file_exists( PNPNG_DIR . 'assets/js/shared.js' ) ) {
-			$this->register_script( 'shared', array( 'pnpng-runtime', 'pnpng-vendors' ) );
+		if ( file_exists( PNINJA_DIR . 'assets/js/shared.js' ) ) {
+			$this->register_script( 'shared', array( 'pninja-runtime', 'pninja-vendors' ) );
 		}
 	}
 
 	private function enqueue_admin_assets(): void {
 		wp_enqueue_media();
 
-		$has_shared = wp_script_is( 'pnpng-shared', 'registered' );
+		$has_shared = wp_script_is( 'pninja-shared', 'registered' );
 		$this->enqueue_style( 'admin' );
-		$this->enqueue_script( 'admin', array_filter( array( 'pnpng-runtime', 'pnpng-vendors', $has_shared ? 'pnpng-shared' : null ) ) );
+		$this->enqueue_script( 'admin', array_filter( array( 'pninja-runtime', 'pninja-vendors', $has_shared ? 'pninja-shared' : null ) ) );
 
 		wp_localize_script(
-			'pnpng-admin',
-			'pnpngAdmin',
+			'pninja-admin',
+			'pninjaAdmin',
 			array(
-				'restUrl'   => esc_url_raw( rest_url( PNPNG_REST_NS ) ),
+				'restUrl'   => esc_url_raw( rest_url( PNINJA_REST_NS ) ),
 				'nonce'     => wp_create_nonce( 'wp_rest' ),
-				'version'   => PNPNG_VERSION,
+				'version'   => PNINJA_VERSION,
 				'siteUrl'   => esc_url( home_url() ),
-				'assetsUrl' => esc_url( PNPNG_ASSETS_URL ),
+				'assetsUrl' => esc_url( PNINJA_ASSETS_URL ),
 				'debug'     => defined( 'WP_DEBUG' ) && WP_DEBUG,
-				'layouts'   => pnpng_supported_layouts(),
+				'layouts'   => pninja_supported_layouts(),
 			)
 		);
 	}
 
 	private function enqueue_frontend_assets(): void {
-		$has_shared = wp_script_is( 'pnpng-shared', 'registered' );
+		$has_shared = wp_script_is( 'pninja-shared', 'registered' );
 		$this->enqueue_style( 'frontend' );
-		$this->enqueue_script( 'frontend', array_filter( array( 'pnpng-runtime', 'pnpng-vendors', $has_shared ? 'pnpng-shared' : null ) ) );
+		$this->enqueue_script( 'frontend', array_filter( array( 'pninja-runtime', 'pninja-vendors', $has_shared ? 'pninja-shared' : null ) ) );
 	}
 
 	private function enqueue_style( string $handle, array $deps = array() ): void {
-		// CSS is emitted by webpack alongside JS into assets/js/ — PNPNG_CSS_URL
+		// CSS is emitted by webpack alongside JS into assets/js/ — PNINJA_CSS_URL
 		// points there explicitly so the intent is clear.
-		$style_url = PNPNG_CSS_URL . $handle . '.css';
-		wp_enqueue_style( 'pnpng-' . $handle, $style_url, $deps, $this->get_asset_version( $handle ) );
+		$style_url = PNINJA_CSS_URL . $handle . '.css';
+		wp_enqueue_style( 'pninja-' . $handle, $style_url, $deps, $this->get_asset_version( $handle ) );
 	}
 
 	private function register_script( string $handle, array $deps = array() ): void {
-		$script_url = PNPNG_ASSETS_URL . $handle . '.js';
-		wp_register_script( 'pnpng-' . $handle, $script_url, $this->build_dependencies( $handle, $deps ), $this->get_asset_version( $handle ), true );
+		$script_url = PNINJA_ASSETS_URL . $handle . '.js';
+		wp_register_script( 'pninja-' . $handle, $script_url, $this->build_dependencies( $handle, $deps ), $this->get_asset_version( $handle ), true );
 	}
 
 	private function enqueue_script( string $handle, array $deps = array() ): void {
-		$script_url = PNPNG_ASSETS_URL . $handle . '.js';
-		wp_enqueue_script( 'pnpng-' . $handle, $script_url, $this->build_dependencies( $handle, $deps ), $this->get_asset_version( $handle ), true );
-		wp_set_script_translations( 'pnpng-' . $handle, 'pninja-media-gallery', PNPNG_DIR . 'languages' );
+		$script_url = PNINJA_ASSETS_URL . $handle . '.js';
+		wp_enqueue_script( 'pninja-' . $handle, $script_url, $this->build_dependencies( $handle, $deps ), $this->get_asset_version( $handle ), true );
+		wp_set_script_translations( 'pninja-' . $handle, 'pninja-media-gallery', PNINJA_DIR . 'languages' );
 	}
 
 	private function build_dependencies( string $handle, array $deps ): array {
@@ -152,7 +152,7 @@ class Enqueue {
 	private function get_asset_version( string $handle ): string {
 		$asset = $this->get_asset_metadata( $handle );
 
-		return isset( $asset['version'] ) ? (string) $asset['version'] : PNPNG_VERSION;
+		return isset( $asset['version'] ) ? (string) $asset['version'] : PNINJA_VERSION;
 	}
 
 	private function get_asset_metadata( string $handle ): array {
@@ -162,12 +162,12 @@ class Enqueue {
 			return $assets[ $handle ];
 		}
 
-		$asset_file = PNPNG_DIR . 'assets/js/' . $handle . '.asset.php';
+		$asset_file = PNINJA_DIR . 'assets/js/' . $handle . '.asset.php';
 		$assets[ $handle ] = file_exists( $asset_file )
 			? require $asset_file
 			: array(
 				'dependencies' => array(),
-				'version'      => PNPNG_VERSION,
+				'version'      => PNINJA_VERSION,
 			);
 
 		return $assets[ $handle ];

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pnpnd\NG\Gutenberg;
+namespace Pninja\Gutenberg;
 
-use Pnpnd\NG\Traits\Singleton;
+use Pninja\Traits\Singleton;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -32,7 +32,7 @@ class Blocks {
 	 * @return void
 	 */
 	public function register_blocks() {
-		$blocks_dir = PNPNG_DIR . 'assets/js/blocks/';
+		$blocks_dir = PNINJA_DIR . 'assets/js/blocks/';
 
 		if ( ! is_dir( $blocks_dir ) ) {
 			return;
@@ -55,13 +55,13 @@ class Blocks {
 	 * @return array
 	 */
 	public function register_block_category( array $categories, $context ) {
-		$pninja_media_gallery_category = array(
+		$pninja_gallery_category = array(
 			'slug'  => 'pninja-media-gallery',
 			'title' => __( 'Pninja Media Gallery', 'pninja-media-gallery' ),
 			'icon'  => 'format-gallery',
 		);
 
-		array_unshift( $categories, $pninja_media_gallery_category );
+		array_unshift( $categories, $pninja_gallery_category );
 
 		return $categories;
 	}

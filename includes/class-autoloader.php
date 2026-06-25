@@ -1,10 +1,10 @@
 <?php
 
-namespace Pnpnd\NG;
+namespace Pninja;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 /**
- * PSR-4 autoloader for the Pnpnd\NG namespace.
+ * PSR-4 autoloader for the Pninja namespace.
  */
 class Autoloader {
 
@@ -24,7 +24,7 @@ class Autoloader {
 	 * @return void
 	 */
 	public static function load( $class_name ) {
-		$prefix = 'Pnpnd\\NG\\';
+		$prefix = 'Pninja\\';
 
 		if ( 0 !== strpos( $class_name, $prefix ) ) {
 			return;
@@ -42,10 +42,10 @@ class Autoloader {
 		// Build sub-directory path (lowercase).
 		$sub_dir = ! empty( $parts ) ? strtolower( implode( '/', $parts ) ) . '/' : '';
 
-		// Search roots: includes/ first, then models/ (for Pnpnd\NG\Models\*).
+		// Search roots: includes/ first, then models/ (for Pninja\Models\*).
 		$base_paths = array(
-			PNPNG_DIR . 'includes/',
-			PNPNG_DIR . 'models/',
+			PNINJA_DIR . 'includes/',
+			PNINJA_DIR . 'models/',
 		);
 
 		foreach ( $base_paths as $base_path ) {
@@ -61,7 +61,7 @@ class Autoloader {
 		// Models live flat in models/ without sub-directory (no sub-namespace path).
 		if ( ! empty( $parts ) && 'models' === strtolower( $parts[0] ) ) {
 			foreach ( array( 'class-', 'trait-' ) as $file_prefix ) {
-				$file = PNPNG_DIR . 'models/' . $file_prefix . $stem . '.php';
+				$file = PNINJA_DIR . 'models/' . $file_prefix . $stem . '.php';
 				if ( file_exists( $file ) ) {
 					require_once $file;
 					return;

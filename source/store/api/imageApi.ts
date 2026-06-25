@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-declare const pnpngAdmin: { restUrl: string; nonce: string };
+declare const pninjaAdmin: { restUrl: string; nonce: string };
 
 export interface GalleryImage {
 	id:            number;
@@ -17,9 +17,9 @@ export interface GalleryImage {
 export const imageApi = createApi( {
 	reducerPath: 'imageApi',
 	baseQuery:   fetchBaseQuery( {
-		baseUrl: pnpngAdmin.restUrl + '/',
+		baseUrl: pninjaAdmin.restUrl + '/',
 		prepareHeaders: ( headers ) => {
-			headers.set( 'X-WP-Nonce', pnpngAdmin.nonce );
+			headers.set( 'X-WP-Nonce', pninjaAdmin.nonce );
 			return headers;
 		},
 	} ),

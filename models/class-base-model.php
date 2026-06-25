@@ -1,5 +1,5 @@
 <?php
-namespace Pnpnd\NG\Models;
+namespace Pninja\Models;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -11,7 +11,7 @@ use WP_Error;
  */
 abstract class BaseModel {
 
-	/** @var string DB table name without prefix, e.g. pnpng_galleries */
+	/** @var string DB table name without prefix, e.g. pninja_galleries */
 	protected $table_name = '';
 
 	/** @var \wpdb */
@@ -54,7 +54,7 @@ abstract class BaseModel {
 
 		if ( false === $result ) {
 			return new WP_Error(
-				'pnpng_db_insert_error',
+				'pninja_db_insert_error',
 				$this->db->last_error ?: sprintf(
 					/* translators: %s: table name */
 					__( 'Failed to insert into %s.', 'pninja-media-gallery' ),
@@ -68,7 +68,7 @@ abstract class BaseModel {
 		if ( 0 === $id ) {
 			// Table exists but has no AUTO_INCREMENT id column — schema is broken.
 			return new WP_Error(
-				'pnpng_db_no_id',
+				'pninja_db_no_id',
 				sprintf(
 					/* translators: %s: table name */
 					__( 'Insert into %s succeeded but returned no ID. The table schema may be incorrect — please deactivate and reactivate the plugin.', 'pninja-media-gallery' ),
@@ -96,7 +96,7 @@ abstract class BaseModel {
 
 		if ( false === $result ) {
 			return new WP_Error(
-				'pnpng_db_update_error',
+				'pninja_db_update_error',
 				$this->db->last_error ?: __( 'Database update failed.', 'pninja-media-gallery' )
 			);
 		}

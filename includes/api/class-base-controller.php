@@ -1,6 +1,6 @@
 <?php
 
-namespace Pnpnd\NG\API;
+namespace Pninja\API;
 
 use WP_REST_Request;
 use WP_REST_Response;
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 abstract class BaseController {
 
 	/** @var string REST namespace, e.g. pninja-media-gallery/v1 */
-	protected $namespace = PNPNG_REST_NS;
+	protected $namespace = PNINJA_REST_NS;
 
 	/** @var string Route base, e.g. galleries */
 	protected $rest_base = '';
@@ -73,7 +73,7 @@ abstract class BaseController {
 	public function permissions_check( WP_REST_Request $request ) {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return new WP_Error(
-				'pnpng_rest_forbidden',
+				'pninja_rest_forbidden',
 				__( 'You do not have permission to perform this action.', 'pninja-media-gallery' ),
 				array( 'status' => rest_authorization_required_code() )
 			);
@@ -91,7 +91,7 @@ abstract class BaseController {
 	public function admin_permissions_check( WP_REST_Request $request ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
-				'pnpng_rest_forbidden',
+				'pninja_rest_forbidden',
 				__( 'You do not have permission to perform this action.', 'pninja-media-gallery' ),
 				array( 'status' => rest_authorization_required_code() )
 			);

@@ -65,7 +65,7 @@ export default function Lightbox( {
 
 	return (
 		<div
-			className="pnpng-lightbox"
+			className="pninja-lightbox"
 			role="dialog"
 			aria-modal="true"
 			aria-label={ __( 'Image lightbox', 'pninja-media-gallery' ) }
@@ -73,7 +73,7 @@ export default function Lightbox( {
 		>
 			{ /* Close button */ }
 			<button
-				className="pnpng-lightbox__close"
+				className="pninja-lightbox__close"
 				onClick={ onClose }
 				aria-label={ __( 'Close lightbox', 'pninja-media-gallery' ) }
 				type="button"
@@ -82,14 +82,14 @@ export default function Lightbox( {
 			</button>
 
 			{ /* Counter */ }
-			<div className="pnpng-lightbox__counter">
+			<div className="pninja-lightbox__counter">
 				{ current + 1 } / { total }
 			</div>
 
 			{ /* Prev arrow */ }
 			{ showNav && total > 1 && (
 				<button
-					className="pnpng-lightbox__arrow pnpng-lightbox__arrow--prev"
+					className="pninja-lightbox__arrow pninja-lightbox__arrow--prev"
 					onClick={ ( e ) => { e.stopPropagation(); prev(); } }
 					aria-label={ __( 'Previous image', 'pninja-media-gallery' ) }
 					type="button"
@@ -100,24 +100,24 @@ export default function Lightbox( {
 
 			{ /* Image stage */ }
 			<div
-				className="pnpng-lightbox__stage"
+				className="pninja-lightbox__stage"
 				onClick={ ( e ) => e.stopPropagation() }
 			>
 				<img
 					key={ img.id }
 					src={ img.src }
 					alt={ img.alt }
-					className={ `pnpng-lightbox__img${ fading ? ' pnpng-lightbox__img--fading' : '' }` }
+					className={ `pninja-lightbox__img${ fading ? ' pninja-lightbox__img--fading' : '' }` }
 				/>
 				{ showCaptions && img.caption && (
-					<p className="pnpng-lightbox__caption">{ img.caption }</p>
+					<p className="pninja-lightbox__caption">{ img.caption }</p>
 				) }
 			</div>
 
 			{ /* Next arrow */ }
 			{ showNav && total > 1 && (
 				<button
-					className="pnpng-lightbox__arrow pnpng-lightbox__arrow--next"
+					className="pninja-lightbox__arrow pninja-lightbox__arrow--next"
 					onClick={ ( e ) => { e.stopPropagation(); next(); } }
 					aria-label={ __( 'Next image', 'pninja-media-gallery' ) }
 					type="button"
@@ -128,12 +128,12 @@ export default function Lightbox( {
 
 			{ /* Thumbnail strip */ }
 			{ total > 1 && (
-				<div className="pnpng-lightbox__thumbs" onClick={ ( e ) => e.stopPropagation() }>
+				<div className="pninja-lightbox__thumbs" onClick={ ( e ) => e.stopPropagation() }>
 					{ images.map( ( im, i ) => (
 						<button
 							key={ im.id }
 							type="button"
-							className={ `pnpng-lightbox__thumb${ i === current ? ' pnpng-lightbox__thumb--active' : '' }` }
+							className={ `pninja-lightbox__thumb${ i === current ? ' pninja-lightbox__thumb--active' : '' }` }
 							onClick={ () => goTo( i ) }
 							/* translators: %d: image number */
 							aria-label={ sprintf( __( 'Go to image %d', 'pninja-media-gallery' ), i + 1 ) }

@@ -1,18 +1,18 @@
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./source/frontend/frontend.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************/
-.pnpng-gallery-widget {
+.pninja-gallery-widget {
   width: 100%;
 }
 
-.pnpng-figure {
+.pninja-figure {
   margin: 0;
   padding: 0;
   overflow: hidden;
   position: relative;
 }
 
-.pnpng-figure img {
+.pninja-figure img {
   width: 100%;
   height: 100%;
   display: block;
@@ -20,7 +20,7 @@
      object-fit: cover;
 }
 
-.pnpng-figure figcaption.pnpng-caption {
+.pninja-figure figcaption.pninja-caption {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -34,39 +34,39 @@
   transition: opacity 0.2s;
 }
 
-.pnpng-figure:hover figcaption.pnpng-caption {
+.pninja-figure:hover figcaption.pninja-caption {
   opacity: 1;
 }
 
-.pnpng-hover--zoom img {
+.pninja-hover--zoom img {
   transition: transform 0.3s ease;
 }
 
-.pnpng-hover--zoom:hover img {
+.pninja-hover--zoom:hover img {
   transform: scale(1.06);
 }
 
-.pnpng-hover--fade img {
+.pninja-hover--fade img {
   transition: opacity 0.3s ease;
 }
 
-.pnpng-hover--fade:hover img {
+.pninja-hover--fade:hover img {
   opacity: 0.8;
 }
 
-.pnpng-hover--slide img {
+.pninja-hover--slide img {
   transition: transform 0.35s ease;
 }
 
-.pnpng-hover--slide:hover img {
+.pninja-hover--slide:hover img {
   transform: translateY(-4px);
 }
 
-.pnpng-hover--none img {
+.pninja-hover--none img {
   transition: none;
 }
 
-.pnpng-overlay {
+.pninja-overlay {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -74,51 +74,51 @@
   transition: opacity 0.25s;
 }
 
-.pnpng-figure:hover .pnpng-overlay {
+.pninja-figure:hover .pninja-overlay {
   opacity: 1;
 }
 
-.pnpng-overlay--dark {
+.pninja-overlay--dark {
   background: rgba(0, 0, 0, 0.4);
 }
 
-.pnpng-overlay--dark-gradient {
+.pninja-overlay--dark-gradient {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 60%);
   opacity: 1;
 }
 
-.pnpng-overlay--light {
+.pninja-overlay--light {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.pnpng-overlay--color {
+.pninja-overlay--color {
   background: rgba(37, 99, 235, 0.35);
 }
 
-.pnpng-loading {
+.pninja-loading {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.pnpng-loading::after {
+.pninja-loading::after {
   content: "";
   width: 28px;
   height: 28px;
   border: 3px solid #e2e8f0;
   border-top-color: #2563eb;
   border-radius: 50%;
-  animation: pnpng-spin 0.7s linear infinite;
+  animation: pninja-spin 0.7s linear infinite;
 }
 
-@keyframes pnpng-spin {
+@keyframes pninja-spin {
   to {
     transform: rotate(-360deg);
   }
 }
 
-.pnpng-lightbox {
+.pninja-lightbox {
   position: fixed;
   inset: 0;
   z-index: 999999;
@@ -130,7 +130,7 @@
   cursor: zoom-out;
 }
 
-.pnpng-lightbox__close {
+.pninja-lightbox__close {
   position: fixed;
   top: 16px;
   left: 20px;
@@ -150,11 +150,11 @@
   z-index: 10;
 }
 
-.pnpng-lightbox__close:hover {
+.pninja-lightbox__close:hover {
   background: rgba(255, 255, 255, 0.25);
 }
 
-.pnpng-lightbox__counter {
+.pninja-lightbox__counter {
   position: fixed;
   top: 20px;
   right: 50%;
@@ -163,7 +163,7 @@
   font-size: 13px;
 }
 
-.pnpng-lightbox__arrow {
+.pninja-lightbox__arrow {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
@@ -183,19 +183,19 @@
   z-index: 10;
 }
 
-.pnpng-lightbox__arrow:hover {
+.pninja-lightbox__arrow:hover {
   background: rgba(255, 255, 255, 0.25);
 }
 
-.pnpng-lightbox__arrow--prev {
+.pninja-lightbox__arrow--prev {
   right: 16px;
 }
 
-.pnpng-lightbox__arrow--next {
+.pninja-lightbox__arrow--next {
   left: 16px;
 }
 
-.pnpng-lightbox__stage {
+.pninja-lightbox__stage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -204,7 +204,7 @@
   max-height: calc(100vh - 160px);
 }
 
-.pnpng-lightbox__img {
+.pninja-lightbox__img {
   max-width: min(90vw, 1200px);
   max-height: calc(100vh - 180px);
   -o-object-fit: contain;
@@ -214,11 +214,11 @@
   transition: opacity 0.2s;
 }
 
-.pnpng-lightbox__img--fading {
+.pninja-lightbox__img--fading {
   opacity: 0;
 }
 
-.pnpng-lightbox__caption {
+.pninja-lightbox__caption {
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   text-align: center;
@@ -227,7 +227,7 @@
   padding: 0 16px;
 }
 
-.pnpng-lightbox__thumbs {
+.pninja-lightbox__thumbs {
   position: fixed;
   bottom: 16px;
   right: 50%;
@@ -240,7 +240,7 @@
   cursor: default;
 }
 
-.pnpng-lightbox__thumb {
+.pninja-lightbox__thumb {
   width: 56px;
   height: 40px;
   border: 2px solid transparent;
@@ -254,7 +254,7 @@
   transition: opacity 0.15s, border-color 0.15s;
 }
 
-.pnpng-lightbox__thumb img {
+.pninja-lightbox__thumb img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -262,11 +262,11 @@
   display: block;
 }
 
-.pnpng-lightbox__thumb:hover {
+.pninja-lightbox__thumb:hover {
   opacity: 0.85;
 }
 
-.pnpng-lightbox__thumb--active {
+.pninja-lightbox__thumb--active {
   border-color: #fff;
   opacity: 1;
 }

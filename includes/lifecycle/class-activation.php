@@ -1,6 +1,6 @@
 <?php
 
-namespace Pnpnd\NG\Lifecycle;
+namespace Pninja\Lifecycle;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -18,7 +18,7 @@ class Activation {
 		self::create_tables();
 		self::set_defaults();
 		flush_rewrite_rules();
-		do_action( 'pnpng_activated' );
+		do_action( 'pninja_activated' );
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Activation {
 	 * @return void
 	 */
 	public static function maybe_upgrade() {
-		if ( get_option( 'pnpng_db_version' ) === PNPNG_DB_VERSION ) {
+		if ( get_option( 'pninja_db_version' ) === PNINJA_DB_VERSION ) {
 			return;
 		}
 
@@ -57,8 +57,8 @@ class Activation {
 		global $wpdb;
 
 		$charset         = $wpdb->get_charset_collate();
-		$galleries_table = $wpdb->prefix . 'pnpng_galleries';
-		$images_table    = $wpdb->prefix . 'pnpng_images';
+		$galleries_table = $wpdb->prefix . 'pninja_galleries';
+		$images_table    = $wpdb->prefix . 'pninja_images';
 
 		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $galleries_table ) ) ) { // phpcs:ignore
 			$id_col = $wpdb->get_results( "SHOW COLUMNS FROM `{$galleries_table}` LIKE 'id'" ); // phpcs:ignore
@@ -87,7 +87,7 @@ class Activation {
 		}
 
 		// dbDelta creates missing tables or adds missing columns to existing ones.
-		$galleries_sql = "CREATE TABLE {$wpdb->prefix}pnpng_galleries (
+		$galleries_sql = "CREATE TABLE {$wpdb->prefix}pninja_galleries (
   id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   title VARCHAR(255) NOT NULL DEFAULT '',
   description TEXT,
@@ -117,7 +117,7 @@ class Activation {
   KEY author_id (author_id)
 ) $charset;";
 
-		$images_sql = "CREATE TABLE {$wpdb->prefix}pnpng_images (
+		$images_sql = "CREATE TABLE {$wpdb->prefix}pninja_images (
   id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   gallery_id BIGINT(20) UNSIGNED NOT NULL,
   attachment_id BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
@@ -140,7 +140,7 @@ class Activation {
 		// Leaving the version stale means the next request will retry automatically.
 		$id_col_now = $wpdb->get_results( "SHOW COLUMNS FROM `{$galleries_table}` LIKE 'id'" ); // phpcs:ignore
 		if ( ! empty( $id_col_now ) ) {
-			update_option( 'pnpng_db_version', PNPNG_DB_VERSION );
+			update_option( 'pninja_db_version', PNINJA_DB_VERSION );
 
 			// Clean up backup tables if repair succeeded.
 			$wpdb->query( "DROP TABLE IF EXISTS `{$galleries_table}_bak`" ); // phpcs:ignore
@@ -154,7 +154,7 @@ class Activation {
 	 * @return void
 	 */
 	private static function set_defaults() {
-		if ( get_option( 'pnpng_settings' ) ) {
+		if ( get_option( 'pninja_settings' ) ) {
 			return; // Already initialised — don't overwrite.
 		}
 
@@ -171,6 +171,6 @@ class Activation {
 			'reduced_motion'       => false,
 		);
 
-		update_option( 'pnpng_settings', $defaults );
+		update_option( 'pninja_settings', $defaults );
 	}
 }

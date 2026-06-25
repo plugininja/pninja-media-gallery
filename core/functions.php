@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
 /**
  * Global helper functions for Pninja Media Gallery.
- * All functions are prefixed pnpng_.
+ * All functions are prefixed pninja_.
  */
 
 /**
@@ -11,8 +11,8 @@ defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
  *
  * @return string
  */
-function pnpng_version() {
-	return PNPNG_VERSION;
+function pninja_version() {
+	return PNINJA_VERSION;
 }
 
 /**
@@ -21,7 +21,7 @@ function pnpng_version() {
  * @param  mixed $data
  * @return string
  */
-function pnpng_json( $data ) {
+function pninja_json( $data ) {
 	return wp_json_encode( $data );
 }
 
@@ -32,8 +32,8 @@ function pnpng_json( $data ) {
  * @param  mixed  $default
  * @return mixed
  */
-function pnpng_get_option( $key, $default = null ) {
-	$options = get_option( 'pnpng_settings', array() );
+function pninja_get_option( $key, $default = null ) {
+	$options = get_option( 'pninja_settings', array() );
 	return isset( $options[ $key ] ) ? $options[ $key ] : $default;
 }
 
@@ -44,10 +44,10 @@ function pnpng_get_option( $key, $default = null ) {
  * @param  mixed  $value
  * @return bool
  */
-function pnpng_update_option( $key, $value ) {
-	$options         = get_option( 'pnpng_settings', array() );
+function pninja_update_option( $key, $value ) {
+	$options         = get_option( 'pninja_settings', array() );
 	$options[ $key ] = $value;
-	return update_option( 'pnpng_settings', $options );
+	return update_option( 'pninja_settings', $options );
 }
 
 /**
@@ -55,6 +55,6 @@ function pnpng_update_option( $key, $value ) {
  *
  * @return string[]
  */
-function pnpng_supported_layouts() {
-	return apply_filters( 'pnpng_supported_layouts', array( 'grid', 'masonry', 'justified', 'album' ) );
+function pninja_supported_layouts() {
+	return apply_filters( 'pninja_supported_layouts', array( 'grid', 'masonry', 'justified', 'album' ) );
 }

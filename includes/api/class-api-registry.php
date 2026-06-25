@@ -1,8 +1,8 @@
 <?php
 
-namespace Pnpnd\NG\API;
+namespace Pninja\API;
 
-use Pnpnd\NG\Traits\Singleton;
+use Pninja\Traits\Singleton;
 
 defined( 'ABSPATH' ) || exit( 'No direct script access allowed' );
 
@@ -29,7 +29,7 @@ class ApiRegistry {
 	 */
 	public function register_controllers() {
 		$controllers = apply_filters(
-			'pnpng_rest_controllers',
+			'pninja_rest_controllers',
 			array(
 				GalleryController::class,
 				ImageController::class,
